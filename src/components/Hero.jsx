@@ -277,6 +277,7 @@ export default function Hero() {
             height: 240,
             borderRadius: '50%',
             objectFit: 'cover',
+            objectPosition: 'center 30%',
             boxShadow: '0 4px 32px rgba(168, 85, 247, 0.2)',
             border: '4px solid #a855f7',
             background: '#1e1b4b',
