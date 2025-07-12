@@ -136,10 +136,10 @@ export default function Hero() {
         position: 'relative',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        alignItems: 'center',
-        justifyContent: isMobile ? 'flex-start' : 'space-between',
+        alignItems: isMobile ? 'flex-start' : 'center',
+        justifyContent: isMobile ? 'flex-start' : 'center',
         minHeight: isMobile ? 'auto' : '70vh',
-        padding: isMobile ? '2.5rem 0.5rem 2rem 0.5rem' : undefined,
+        padding: isMobile ? '2.5rem 0.5rem 2rem 0.5rem' : '0 4vw',
         overflow: 'hidden',
         background: 'radial-gradient(ellipse at 60% 40%, #0f0f23 0%, #1e1b4b 50%, #312e81 100%)',
         width: '100vw',
@@ -154,8 +154,8 @@ export default function Hero() {
       {!isMobile && <FloatingText text="AUTOMATION" style={{ top: '25%', right: '15%' }} delay={2} />}
       {!isMobile && <FloatingText text="ENGINEERING" style={{ bottom: '30%', left: '5%' }} delay={4} />}
       {!isMobile && <FloatingText text="STRATEGY" style={{ bottom: '20%', right: '10%' }} delay={6} />}
-      {/* Profile image always first on mobile */}
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: isMobile ? 18 : 0 }}>
+      {/* Profile image left on desktop, top on mobile */}
+      <div style={{ width: isMobile ? '100%' : 320, display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: isMobile ? 18 : 0 }}>
         <motion.div
           className="hero-photo"
           initial={{ opacity: 0, y: isMobile ? -30 : 40 }}
@@ -198,14 +198,17 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         style={{ 
           flex: 1, 
-          paddingLeft: isMobile ? 0 : '8vw', 
+          paddingLeft: isMobile ? 0 : 48, 
           zIndex: 2,
-          textAlign: 'center',
+          textAlign: isMobile ? 'center' : 'left',
           marginBottom: isMobile ? '1.5rem' : 0,
-          width: '100%',
-          maxWidth: isMobile ? 420 : 600,
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: 600,
+          marginLeft: isMobile ? 'auto' : 0,
+          marginRight: isMobile ? 'auto' : 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         <motion.h1 
@@ -218,6 +221,8 @@ export default function Hero() {
             textShadow: '0 0 15px rgba(168, 85, 247, 0.3)',
             position: 'relative',
             wordBreak: 'break-word',
+            maxWidth: isMobile ? 420 : 600,
+            whiteSpace: 'normal',
           }}
           animate={{
             textShadow: [
@@ -272,9 +277,10 @@ export default function Hero() {
             textShadow: '0 0 10px rgba(168, 85, 247, 0.3)',
             fontWeight: 300,
             letterSpacing: '0.5px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            marginLeft: isMobile ? 'auto' : 0,
+            marginRight: isMobile ? 'auto' : 0,
             lineHeight: 1.5,
+            whiteSpace: 'normal',
           }}
         >
           Bridging Data, Automation & Strategy — One Solution at a Time.
@@ -287,9 +293,9 @@ export default function Hero() {
             flexWrap: 'wrap',
             alignItems: 'center',
             marginTop: isMobile ? '0.5rem' : '1.5rem',
-            justifyContent: 'center',
+            justifyContent: isMobile ? 'center' : 'flex-start',
             flexDirection: isMobile ? 'column' : 'row',
-            width: '100%',
+            width: isMobile ? '100%' : 'auto',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
