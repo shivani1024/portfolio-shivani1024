@@ -115,7 +115,7 @@ export default function Hero() {
   // Responsive state for mobile
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 700);
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -136,86 +136,43 @@ export default function Hero() {
         position: 'relative',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        alignItems: isMobile ? 'stretch' : 'center',
-        justifyContent: isMobile ? 'flex-start' : 'space-between',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         minHeight: isMobile ? 'auto' : '70vh',
-        padding: isMobile ? '2.5rem 0.5rem 2rem 0.5rem' : undefined,
+        padding: isMobile ? '2rem 0.5rem' : undefined,
         overflow: 'hidden',
         background: 'radial-gradient(ellipse at 60% 40%, #0f0f23 0%, #1e1b4b 50%, #312e81 100%)',
-        width: '100vw',
-        boxSizing: 'border-box',
-        maxWidth: '100vw',
       }}
     >
       {/* Darker mesh SVG background */}
       <MeshBackground />
-      {/* Abstract floating text elements (hidden on mobile for clarity) */}
-      {!isMobile && <FloatingText text="DATA" style={{ top: '15%', left: '10%' }} delay={0} />}
-      {!isMobile && <FloatingText text="AUTOMATION" style={{ top: '25%', right: '15%' }} delay={2} />}
-      {!isMobile && <FloatingText text="ENGINEERING" style={{ bottom: '30%', left: '5%' }} delay={4} />}
-      {!isMobile && <FloatingText text="STRATEGY" style={{ bottom: '20%', right: '10%' }} delay={6} />}
-      {/* Profile image on top for mobile */}
-      <motion.div
-        className="hero-photo"
-        initial={{ opacity: 0, y: isMobile ? -30 : 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        style={{ 
-          flex: isMobile ? 'none' : 1, 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          minHeight: isMobile ? 120 : 320, 
-          zIndex: 2,
-          margin: isMobile ? '0 0 1.5rem 0' : 0
-        }}
-      >
-        <motion.img
-          src={profileImg}
-          alt="Shivani Sawant"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          style={{
-            width: isMobile ? 110 : 240,
-            height: isMobile ? 110 : 240,
-            borderRadius: '50%',
-            objectFit: 'cover',
-            objectPosition: 'center 30%',
-            boxShadow: '0 4px 32px rgba(168, 85, 247, 0.2)',
-            border: '4px solid #a855f7',
-            background: '#1e1b4b',
-            filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
-          }}
-        />
-      </motion.div>
+      {/* Abstract floating text elements */}
+      <FloatingText text="DATA" style={{ top: '15%', left: '10%' }} delay={0} />
+      <FloatingText text="AUTOMATION" style={{ top: '25%', right: '15%' }} delay={2} />
+      <FloatingText text="ENGINEERING" style={{ bottom: '30%', left: '5%' }} delay={4} />
+      <FloatingText text="STRATEGY" style={{ bottom: '20%', right: '10%' }} delay={6} />
       <motion.div
         className="hero-content"
-        initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
+        initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
         style={{ 
           flex: 1, 
           paddingLeft: isMobile ? 0 : '8vw', 
           zIndex: 2,
-          textAlign: 'center',
-          marginBottom: isMobile ? '1.5rem' : 0,
-          width: '100%',
-          maxWidth: isMobile ? 420 : 600,
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          textAlign: isMobile ? 'center' : 'left',
+          marginBottom: isMobile ? '2rem' : 0
         }}
       >
         <motion.h1 
           style={{ 
-            fontSize: isMobile ? '1.3rem' : '2.8rem', 
+            fontSize: isMobile ? '2rem' : '2.8rem', 
             fontWeight: 800, 
             color: '#d1d5db', 
-            marginBottom: isMobile ? '0.7rem' : '1.2rem', 
-            lineHeight: 1.15,
+            marginBottom: '1.2rem', 
+            lineHeight: 1.1,
             textShadow: '0 0 15px rgba(168, 85, 247, 0.3)',
-            position: 'relative',
-            wordBreak: 'break-word',
+            position: 'relative'
           }}
           animate={{
             textShadow: [
@@ -263,16 +220,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           style={{ 
-            fontSize: isMobile ? '0.95rem' : '1.2rem', 
+            fontSize: isMobile ? '1rem' : '1.2rem', 
             color: '#d1d5db', 
-            marginBottom: isMobile ? '1.2rem' : '2.2rem', 
+            marginBottom: '2.2rem', 
             maxWidth: 520,
             textShadow: '0 0 10px rgba(168, 85, 247, 0.3)',
             fontWeight: 300,
             letterSpacing: '0.5px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            lineHeight: 1.5,
+            marginLeft: isMobile ? 'auto' : 0,
+            marginRight: isMobile ? 'auto' : 0
           }}
         >
           Bridging Data, Automation & Strategy — One Solution at a Time.
@@ -281,13 +237,12 @@ export default function Hero() {
         <motion.div
           style={{
             display: 'flex',
-            gap: isMobile ? '0.7rem' : '1rem',
-            flexWrap: 'wrap',
+            gap: isMobile ? '0.5rem' : '1rem',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
             alignItems: 'center',
-            marginTop: isMobile ? '0.5rem' : '1.5rem',
-            justifyContent: 'center',
+            marginTop: '1.5rem',
+            justifyContent: isMobile ? 'center' : 'flex-start',
             flexDirection: isMobile ? 'column' : 'row',
-            width: '100%',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -306,8 +261,8 @@ export default function Hero() {
             transition={{ type: 'spring', stiffness: 300 }}
             style={{ 
               fontWeight: 700, 
-              fontSize: isMobile ? 15 : 18, 
-              padding: isMobile ? '0.7rem 1.2rem' : '0.9rem 2.4rem', 
+              fontSize: isMobile ? 16 : 18, 
+              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 2.4rem', 
               borderRadius: 32, 
               background: 'linear-gradient(135deg, #7c3aed, #a855f7)', 
               color: '#fff', 
@@ -317,8 +272,8 @@ export default function Hero() {
               boxShadow: '0 2px 16px rgba(168, 85, 247, 0.3)', 
               position: 'relative',
               overflow: 'hidden',
-              width: isMobile ? '100%' : 'auto',
-              margin: isMobile ? '0.15rem 0' : 0
+              width: isMobile ? '90%' : 'auto',
+              margin: isMobile ? '0.25rem 0' : 0
             }}
           >
             <motion.span
@@ -354,8 +309,8 @@ export default function Hero() {
             transition={{ type: 'spring', stiffness: 300 }}
             style={{ 
               fontWeight: 700, 
-              fontSize: isMobile ? 15 : 18, 
-              padding: isMobile ? '0.7rem 1.2rem' : '0.9rem 2.4rem', 
+              fontSize: isMobile ? 16 : 18, 
+              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 2.4rem', 
               borderRadius: 32, 
               background: 'transparent', 
               color: '#d1d5db', 
@@ -367,8 +322,8 @@ export default function Hero() {
               display: 'inline-block',
               position: 'relative',
               overflow: 'hidden',
-              width: isMobile ? '100%' : 'auto',
-              margin: isMobile ? '0.15rem 0' : 0
+              width: isMobile ? '90%' : 'auto',
+              margin: isMobile ? '0.25rem 0' : 0
             }}
           >
             <motion.span
@@ -407,14 +362,14 @@ export default function Hero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: isMobile ? 44 : 56,
-              height: isMobile ? 44 : 56,
+              width: isMobile ? 48 : 56,
+              height: isMobile ? 48 : 56,
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.12)',
               border: '2px solid #a855f7',
               color: '#a855f7',
-              fontSize: isMobile ? 20 : 26,
-              margin: isMobile ? '0.15rem 0' : 0,
+              fontSize: isMobile ? 22 : 26,
+              margin: isMobile ? '0.25rem 0' : 0,
               boxShadow: '0 2px 16px rgba(168, 85, 247, 0.15)',
               textDecoration: 'none',
               outline: 'none',
@@ -423,7 +378,7 @@ export default function Hero() {
             }}
             aria-label="Email"
           >
-            <svg width={isMobile ? 20 : 26} height={isMobile ? 20 : 26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width={isMobile ? 22 : 26} height={isMobile ? 22 : 26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
           </motion.a>
           {/* LinkedIn Icon Button */}
           <motion.a
@@ -443,14 +398,14 @@ export default function Hero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: isMobile ? 44 : 56,
-              height: isMobile ? 44 : 56,
+              width: isMobile ? 48 : 56,
+              height: isMobile ? 48 : 56,
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.12)',
               border: '2px solid #a855f7',
               color: '#a855f7',
-              fontSize: isMobile ? 20 : 26,
-              margin: isMobile ? '0.15rem 0' : 0,
+              fontSize: isMobile ? 22 : 26,
+              margin: isMobile ? '0.25rem 0' : 0,
               boxShadow: '0 2px 16px rgba(168, 85, 247, 0.15)',
               textDecoration: 'none',
               outline: 'none',
@@ -459,9 +414,43 @@ export default function Hero() {
             }}
             aria-label="LinkedIn"
           >
-            <svg width={isMobile ? 20 : 26} height={isMobile ? 20 : 26} viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5" stroke="#fff" strokeWidth="2"/><circle cx="8" cy="8" r="1.5" fill="#fff"/><path d="M12 11v5m0-5h2.5a2.5 2.5 0 0 1 2.5 2.5V16" stroke="#fff" strokeWidth="2"/></svg>
+            <svg width={isMobile ? 22 : 26} height={isMobile ? 22 : 26} viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5" stroke="#fff" strokeWidth="2"/><circle cx="8" cy="8" r="1.5" fill="#fff"/><path d="M12 11v5m0-5h2.5a2.5 2.5 0 0 1 2.5 2.5V16" stroke="#fff" strokeWidth="2"/></svg>
           </motion.a>
         </motion.div>
+      </motion.div>
+      <motion.div
+        className="hero-photo"
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        style={{ 
+          flex: 1, 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          minHeight: isMobile ? 180 : 320, 
+          zIndex: 2,
+          marginTop: isMobile ? '1.5rem' : 0
+        }}
+      >
+        <motion.img
+          src={profileImg}
+          alt="Shivani Sawant"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          style={{
+            width: isMobile ? 140 : 240,
+            height: isMobile ? 140 : 240,
+            borderRadius: '50%',
+            objectFit: 'cover',
+            objectPosition: 'center 30%',
+            boxShadow: '0 4px 32px rgba(168, 85, 247, 0.2)',
+            border: '4px solid #a855f7',
+            background: '#1e1b4b',
+            filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
+          }}
+        />
       </motion.div>
     </section>
   );
