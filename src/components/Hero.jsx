@@ -2,13 +2,60 @@ import { motion } from 'framer-motion';
 import { useTypewriter } from 'react-simple-typewriter';
 import profileImg from '../assets/portfolio.jpg';
 
-const particles = Array.from({ length: 24 }, (_, i) => ({
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  size: 12 + Math.random() * 18,
-  delay: Math.random() * 2,
-  color: `rgba(167, 139, 250, ${0.18 + Math.random() * 0.22})`, // soft purple
-}));
+// SVG mesh background as a React component
+function MeshBackground() {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 1440 600"
+      fill="none"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 0,
+        pointerEvents: 'none',
+        opacity: 0.7,
+      }}
+    >
+      {/* Mesh lines */}
+      <polyline
+        points="0,400 200,300 400,350 600,250 800,300 1000,200 1200,250 1440,180"
+        stroke="#a78bfa"
+        strokeWidth="2"
+        fill="none"
+        opacity="0.4"
+      />
+      <polyline
+        points="0,300 200,200 400,250 600,150 800,200 1000,100 1200,150 1440,80"
+        stroke="#a78bfa"
+        strokeWidth="2"
+        fill="none"
+        opacity="0.2"
+      />
+      {/* Glowing nodes */}
+      {[200, 400, 600, 800, 1000, 1200].map((x, i) => (
+        <circle
+          key={x}
+          cx={x}
+          cy={i % 2 === 0 ? 300 : 250}
+          r="8"
+          fill="#c084fc"
+          filter="url(#glow)"
+        />
+      ))}
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+  );
+}
 
 export default function Hero() {
   const [text] = useTypewriter({
@@ -33,34 +80,11 @@ export default function Hero() {
         justifyContent: 'space-between',
         minHeight: '70vh',
         overflow: 'hidden',
-        background: 'radial-gradient(ellipse at 60% 40%, #6d28d9 0%, #1e293b 100%)',
+        background: 'radial-gradient(ellipse at 60% 40%, #23243a 0%, #a78bfa 100%)',
       }}
     >
-      {/* Gradient mesh + animated background particles */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
-        {particles.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: p.delay, duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
-            style={{
-              position: 'absolute',
-              left: p.left,
-              top: p.top,
-              width: p.size,
-              height: p.size,
-              borderRadius: '50%',
-              background: p.color,
-              boxShadow: `0 0 16px 8px ${p.color}`,
-              filter: 'blur(1.5px)',
-              transition: 'background 0.5s',
-            }}
-          />
-        ))}
-        {/* Optional: subtle blur overlay for extra depth */}
-        <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(2.5px)', zIndex: 1, pointerEvents: 'none' }} />
-      </div>
+      {/* Purple mesh SVG background */}
+      <MeshBackground />
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, x: -40 }}
