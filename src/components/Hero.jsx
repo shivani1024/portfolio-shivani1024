@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import { useTypewriter } from 'react-simple-typewriter';
 import profileImg from '../assets/portfolio.jpg';
 
-const particles = Array.from({ length: 18 }, (_, i) => ({
+const particles = Array.from({ length: 24 }, (_, i) => ({
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
-  size: 10 + Math.random() * 18,
+  size: 12 + Math.random() * 18,
   delay: Math.random() * 2,
+  color: `rgba(167, 139, 250, ${0.18 + Math.random() * 0.22})`, // soft purple
 }));
 
 export default function Hero() {
@@ -22,14 +23,26 @@ export default function Hero() {
     delaySpeed: 2000,
   });
   return (
-    <section className="section glass" id="hero" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '70vh', overflow: 'hidden' }}>
-      {/* Subtle animated background particles */}
+    <section
+      className="section glass"
+      id="hero"
+      style={{
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        minHeight: '70vh',
+        overflow: 'hidden',
+        background: 'radial-gradient(ellipse at 60% 40%, #6d28d9 0%, #1e293b 100%)',
+      }}
+    >
+      {/* Gradient mesh + animated background particles */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
         {particles.map((p, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 0.18, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: p.delay, duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
             style={{
               position: 'absolute',
@@ -38,18 +51,22 @@ export default function Hero() {
               width: p.size,
               height: p.size,
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--accent), var(--accent-alt))',
-              filter: 'blur(2px)',
+              background: p.color,
+              boxShadow: `0 0 16px 8px ${p.color}`,
+              filter: 'blur(1.5px)',
+              transition: 'background 0.5s',
             }}
           />
         ))}
+        {/* Optional: subtle blur overlay for extra depth */}
+        <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(2.5px)', zIndex: 1, pointerEvents: 'none' }} />
       </div>
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        style={{ flex: 1, paddingLeft: '8vw', zIndex: 1 }}
+        style={{ flex: 1, paddingLeft: '8vw', zIndex: 2 }}
       >
         <h1 style={{ fontSize: '2.8rem', fontWeight: 800, color: 'var(--accent)', marginBottom: '1.2rem', lineHeight: 1.1 }}>
           <span>{text}</span>
@@ -79,7 +96,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 320, zIndex: 1 }}
+        style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 320, zIndex: 2 }}
       >
         <motion.img
           src={profileImg}
