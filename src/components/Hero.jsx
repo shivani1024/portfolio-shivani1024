@@ -277,10 +277,10 @@ export default function Hero() {
             height: 240,
             borderRadius: '50%',
             objectFit: 'cover',
-            boxShadow: '0 4px 32px rgba(168, 85, 247, 0.4)',
+            boxShadow: '0 4px 32px rgba(168, 85, 247, 0.2)',
             border: '4px solid #a855f7',
             background: '#1e1b4b',
-            filter: 'drop-shadow(0 0 24px rgba(168, 85, 247, 0.6))',
+            filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
           }}
         />
       </motion.div>
