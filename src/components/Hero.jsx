@@ -145,17 +145,17 @@ export default function Hero() {
           style={{ 
             fontSize: '2.8rem', 
             fontWeight: 800, 
-            color: '#f3f4f6', 
+            color: '#d1d5db', 
             marginBottom: '1.2rem', 
             lineHeight: 1.1,
-            textShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
+            textShadow: '0 0 15px rgba(168, 85, 247, 0.3)',
             position: 'relative'
           }}
           animate={{
             textShadow: [
+              '0 0 15px rgba(168, 85, 247, 0.3)',
               '0 0 20px rgba(168, 85, 247, 0.5)',
-              '0 0 30px rgba(168, 85, 247, 0.8)',
-              '0 0 20px rgba(168, 85, 247, 0.5)'
+              '0 0 15px rgba(168, 85, 247, 0.3)'
             ]
           }}
           transition={{
