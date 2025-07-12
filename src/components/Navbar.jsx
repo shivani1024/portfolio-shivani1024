@@ -38,7 +38,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   return (
-    <div className="sticky-navbar glass" style={{ top: hidden ? -80 : 0, zIndex: 100 }}>
+    <div className="sticky-navbar glass desktop-navbar" style={{ top: hidden ? -80 : 0, zIndex: 100 }}>
       <nav className="navbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 4vw' }}>
         <div className="nav-logo" style={{ fontWeight: 800, fontSize: 22, letterSpacing: 1, color: 'var(--accent)' }}>Shivani Sawant</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>

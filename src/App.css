@@ -227,3 +227,6 @@ body {
   margin-top: 24px;
   width: 100%;
 }
+
+.desktop-navbar { display: block; }
+@media (max-width: 700px) { .desktop-navbar { display: none !important; } }
