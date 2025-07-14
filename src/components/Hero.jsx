@@ -132,7 +132,7 @@ export default function Hero() {
     <section
       className="section glass"
       id="hero"
-      style={{
+            style={{
         position: 'relative',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
@@ -294,7 +294,7 @@ export default function Hero() {
             />
             Let's Connect
           </motion.button>
-          <motion.a
+        <motion.a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -305,8 +305,8 @@ export default function Hero() {
               boxShadow: '0 4px 24px rgba(168, 85, 247, 0.3)',
               borderColor: '#a855f7'
             }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 300 }}
             style={{ 
               fontWeight: 700, 
               fontSize: isMobile ? 16 : 18, 
@@ -415,7 +415,7 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <svg width={isMobile ? 22 : 26} height={isMobile ? 22 : 26} viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5" stroke="#fff" strokeWidth="2"/><circle cx="8" cy="8" r="1.5" fill="#fff"/><path d="M12 11v5m0-5h2.5a2.5 2.5 0 0 1 2.5 2.5V16" stroke="#fff" strokeWidth="2"/></svg>
-          </motion.a>
+        </motion.a>
         </motion.div>
       </motion.div>
       <motion.div
