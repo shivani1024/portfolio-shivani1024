@@ -37,6 +37,14 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  // Scroll to contact section
+  const handleConnectClick = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="sticky-navbar glass desktop-navbar" style={{ top: hidden ? -80 : 0, zIndex: 100 }}>
       <nav className="navbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 4vw' }}>
@@ -79,6 +87,25 @@ export default function Navbar() {
               </motion.a>
             ))}
           </div>
+          {/* Let's Connect Button */}
+          <button
+            onClick={handleConnectClick}
+            style={{
+              marginLeft: 24,
+              background: 'linear-gradient(90deg, #a855f7 0%, #c084fc 100%)',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: 17,
+              border: 'none',
+              borderRadius: 8,
+              padding: '0.6rem 1.6rem',
+              cursor: 'pointer',
+              boxShadow: '0 2px 12px #a855f755',
+              transition: 'background 0.2s',
+            }}
+          >
+            Let's Connect
+          </button>
           <div style={{ display: 'flex', gap: 16, marginLeft: 24 }}>
             <motion.a whileHover={{ scale: 1.2, color: 'var(--accent)' }} href="https://www.linkedin.com/in/shivani-sawant-79a823151/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-alt)', fontSize: 22 }}><FaLinkedin /></motion.a>
             <motion.a whileHover={{ scale: 1.2, color: 'var(--accent)' }} href="https://github.com/shivani1024" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-alt)', fontSize: 22 }}><FaGithub /></motion.a>
