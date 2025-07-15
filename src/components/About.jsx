@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FaJava, FaPython, FaDatabase, FaCloud, FaRobot, FaCode, FaCogs, FaProjectDiagram, FaTools, FaChartBar, FaNetworkWired } from 'react-icons/fa';
 import profileImg from '../assets/portfolio.jpg';
 import aboutImg from '../assets/1.jpeg';
+import React, { useState } from 'react';
 
 const skillGroups = [
   {
@@ -83,6 +84,7 @@ const skillGroups = [
 ];
 
 export default function About() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <section className="section" id="about" style={{
       display: 'flex',
@@ -125,7 +127,18 @@ export default function About() {
         transition={{ duration: 0.8, delay: 0.2 }}
         style={{ flex: 0.8, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: 240 }}
       >
-        <img src={aboutImg} alt="Shivani Sawant" style={{ width: 220, height: 220, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 0 32px #a855f7', border: '4px solid #a855f7', background: '#1e1b4b' }} />
+        <img src={aboutImg} alt="Shivani Sawant" style={{ width: 220, height: 220, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 0 32px #a855f7', border: '4px solid #a855f7', background: '#1e1b4b', cursor: 'pointer' }} onClick={() => setModalOpen(true)} />
+        {modalOpen && (
+          <div style={{
+            position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+            background: 'rgba(20, 10, 40, 0.92)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }} onClick={() => setModalOpen(false)}>
+            <img src={aboutImg} alt="Shivani Sawant" style={{
+              maxWidth: '90vw', maxHeight: '85vh', borderRadius: 18, boxShadow: '0 8px 32px #a855f7', border: '3px solid #a855f7', background: '#1e1b4b',
+            }} />
+            <button onClick={() => setModalOpen(false)} style={{ position: 'fixed', top: 32, right: 48, fontSize: 32, color: '#fff', background: 'none', border: 'none', cursor: 'pointer', zIndex: 10000 }}>&#10005;</button>
+          </div>
+        )}
       </motion.div>
     </section>
   );

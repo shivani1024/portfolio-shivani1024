@@ -8,7 +8,7 @@ const cityData = [
       'https://i.imgur.com/Saa5ytm.jpg',
       'https://i.imgur.com/514MUkN.jpg',
     ],
-    description: 'New York City',
+    description: 'The energy of NYC is unmatched. From the dazzling lights of Times Square to peaceful walks in Central Park, every moment was an adventure. The city’s diversity and endless food options made it a dream for a curious traveler like me.'
   },
   {
     name: 'Boston',
@@ -17,7 +17,7 @@ const cityData = [
       'https://i.imgur.com/ma6OigG.jpg',
       'https://i.imgur.com/eKT7exr.jpg',
     ],
-    description: 'Boston',
+    description: 'Boston’s blend of history and academia was inspiring. Walking the Freedom Trail and exploring Harvard’s campus made me appreciate the city’s intellectual and revolutionary spirit.'
   },
   {
     name: 'Miami',
@@ -26,7 +26,7 @@ const cityData = [
       'https://i.imgur.com/HKhXe3E.jpg',
       'https://i.imgur.com/8TYkn5y.jpg',
     ],
-    description: 'Miami',
+    description: 'Miami was a burst of color and culture. The beaches, art deco buildings, and vibrant nightlife made every day feel like a celebration. I loved the fusion of Latin flavors and music everywhere.'
   },
   {
     name: 'Washington DC',
@@ -35,7 +35,7 @@ const cityData = [
       'https://i.imgur.com/OyQIOC8.jpg',
       'https://i.imgur.com/mZIOIsy.jpg',
     ],
-    description: 'Washington DC',
+    description: 'Exploring the capital was a blend of history and modern vibrance. The National Mall, monuments, and cherry blossoms made for unforgettable walks. I loved the museums and the sense of significance everywhere.'
   },
   {
     name: 'Niagara Falls',
@@ -44,7 +44,7 @@ const cityData = [
       'https://i.imgur.com/CMMxzFw.jpg',
       'https://i.imgur.com/C5flBdd.jpg',
     ],
-    description: 'Niagara Falls',
+    description: 'Niagara Falls was pure awe. The roar of the water, the mist on my face, and the rainbows arching over the falls made it a magical experience. The boat ride close to the falls was a thrilling highlight.'
   },
 ];
 
@@ -94,8 +94,26 @@ function decodeHtml(html) {
   return txt.value;
 }
 
+// Modal component for full image view
+function ImageModal({ open, src, alt, onClose }) {
+  if (!open) return null;
+  return (
+    <div style={{
+      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+      background: 'rgba(20, 10, 40, 0.92)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+    }} onClick={onClose}>
+      <img src={src} alt={alt} style={{
+        maxWidth: '90vw', maxHeight: '85vh', borderRadius: 18, boxShadow: '0 8px 32px #a855f7', border: '3px solid #a855f7', background: '#1e1b4b',
+      }} />
+      <button onClick={onClose} style={{ position: 'fixed', top: 32, right: 48, fontSize: 32, color: '#fff', background: 'none', border: 'none', cursor: 'pointer', zIndex: 10000 }}>&#10005;</button>
+    </div>
+  );
+}
+
 export default function InterestsSection() {
   const [current, setCurrent] = useState(0);
+  const [modalImg, setModalImg] = useState(null);
+  const [modalAlt, setModalAlt] = useState('');
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -238,17 +256,18 @@ export default function InterestsSection() {
               <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
                 {slide.images && slide.images.length > 0 ? (
                   slide.images.map((img, idx) => (
-                    <ImageWithFallback
-                      key={img}
-                      src={img}
-                      alt={`${slide.name} travel ${idx + 1}`}
-                    />
+                    <span key={img} style={{ cursor: 'pointer' }} onClick={() => { setModalImg(img); setModalAlt(`${slide.name} travel ${idx + 1}`); }}>
+                      <ImageWithFallback
+                        src={img}
+                        alt={`${slide.name} travel ${idx + 1}`}
+                      />
+                    </span>
                   ))
                 ) : (
                   <div style={{ color: '#a855f7', fontSize: 16, margin: '1rem auto' }}>No images found for this city.<br/>Upload your images to <b>public/images/</b> and update the code if needed.</div>
                 )}
               </div>
-              <div style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8 }}>{slide.description}</div>
+              <div style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8, maxWidth: 600, marginLeft: 'auto', marginRight: 'auto' }}>{slide.description}</div>
             </>
           ) : (
             <div style={{ color: '#a855f7', fontSize: 18 }}>No slides to display.</div>
@@ -265,6 +284,7 @@ export default function InterestsSection() {
           transition: 'background 0.2s',
         }}>&#8594;</button>
       </div>
+      <ImageModal open={!!modalImg} src={modalImg} alt={modalAlt} onClose={() => setModalImg(null)} />
       <div style={{ marginTop: 24, color: '#c084fc', fontSize: 16 }}>
         {slides.map((s, idx) => (
           <span key={s.name} style={{
