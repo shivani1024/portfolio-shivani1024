@@ -120,14 +120,18 @@ export default function About() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 20,
-          marginTop: 8,
+          gap: 40,
+          marginTop: 16,
+          maxWidth: 1100,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          padding: '0 16px',
         }}>
           {skillGroups.map(group => (
             <div key={group.label} style={{
               background: 'rgba(168,85,247,0.08)',
-              borderRadius: 12,
-              padding: '1rem 1.1rem',
+              borderRadius: 16,
+              padding: '1.6rem 1.5rem',
               marginBottom: 6,
               boxShadow: '0 1px 6px #a855f722',
               border: '1px solid #a855f722',
@@ -136,7 +140,7 @@ export default function About() {
               flexDirection: 'column',
               justifyContent: 'flex-start',
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: 20, color: '#a855f7' }}>{group.icon}</span>
                 <span style={{ fontWeight: 700, color: '#c084fc', fontSize: 16 }}>{group.label}</span>
               </div>
