@@ -1,45 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
 const cityData = [
-  // Replace the URLs below with your own hosted images (e.g., /images/washington1.jpg if using GitHub/public)
-  // Make sure to upload your images to the public/images/ folder and use the correct filenames here.
   {
     name: 'Washington DC',
     images: [
-      '/images/washington1.jpg',
-      '/images/washington2.jpg',
+      'https://i.imgur.com/E9LwQxh.jpg',
+      'https://i.imgur.com/AGTF4UQ.jpg',
     ],
     description: `Exploring the capital was a blend of history and modern vibrance. The National Mall, monuments, and cherry blossoms made for unforgettable walks. I loved the museums and the sense of significance everywhere.`
   },
   {
     name: 'Miami',
     images: [
-      '/images/miami1.jpg',
-      '/images/miami2.jpg',
+      'https://i.imgur.com/E9LwQxh.jpg',
+      'https://i.imgur.com/AGTF4UQ.jpg',
     ],
     description: `Miami was all about sun, sand, and vibrant culture. The beaches were stunning, and the food scene was a delicious adventure. I enjoyed the art deco architecture and the lively nightlife.`
   },
   {
     name: 'Niagara Falls',
     images: [
-      '/images/niagara1.jpg',
-      '/images/niagara2.jpg',
+      'https://i.imgur.com/E9LwQxh.jpg',
+      'https://i.imgur.com/AGTF4UQ.jpg',
     ],
     description: `Witnessing the power of Niagara Falls was awe-inspiring. The mist, the roar, and the rainbows made it magical. The boat ride close to the falls was a thrilling highlight of my travels.`
   },
   {
     name: 'New York City',
     images: [
-      '/images/nyc1.jpg',
-      '/images/nyc2.jpg',
+      'https://i.imgur.com/E9LwQxh.jpg',
+      'https://i.imgur.com/AGTF4UQ.jpg',
     ],
     description: `NYC is a city that never sleeps! From Times Square to Central Park, every corner buzzed with energy. I loved the diversity, the food, and the endless things to see and do.`
   },
   {
     name: 'Boston',
     images: [
-      '/images/boston1.jpg',
-      '/images/boston2.jpg',
+      'https://i.imgur.com/E9LwQxh.jpg',
+      'https://i.imgur.com/AGTF4UQ.jpg',
     ],
     description: `Boston felt like a perfect blend of history and academia. Walking the Freedom Trail and visiting Harvard were highlights. The city’s charm and intellectual vibe made it special.`
   },
