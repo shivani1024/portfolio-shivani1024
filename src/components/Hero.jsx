@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTypewriter } from 'react-simple-typewriter';
 import profileImg from '../assets/portfolio.jpg';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Dot matrix animated background
 function DotMatrixBackground() {
@@ -180,6 +180,8 @@ function FloatingText({ text, delay = 0 }) {
 }
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [text] = useTypewriter({
     words: [
       "Oracle Consultant",
@@ -238,7 +240,7 @@ export default function Hero() {
           Specialized in Oracle Cloud applications, business intelligence, and automated workflows. Proven track record of delivering enterprise solutions that drive operational efficiency.
         </div>
         <div style={{ fontSize: 26, fontWeight: 600, color: '#fff', minHeight: 40, marginBottom: 32 }}>
-          <span>{text}</span>
+          {mounted ? <span>{text}</span> : <span>&nbsp;</span>}
         </div>
         <button
           className="cta-button"
