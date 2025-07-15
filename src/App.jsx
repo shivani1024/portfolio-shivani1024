@@ -256,6 +256,7 @@ function App() {
                     fontSize: 14,
                     lineHeight: 1.7,
                     listStyle: 'disc',
+                    listStylePosition: 'inside',
                   }}>
                     {group.skills.map(skill => <li key={skill}>{skill}</li>)}
                   </ul>
