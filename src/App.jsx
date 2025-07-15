@@ -44,6 +44,8 @@ function App() {
       />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
+        {/* About Section - moved above Experience */}
+        <About />
         {/* Skills Section */}
         <section style={{
           padding: '4rem 2rem',
@@ -96,7 +98,6 @@ function App() {
             </div>
           </div>
         </section>
-
         {/* Experience Section */}
         <section style={{
           padding: '4rem 2rem',
@@ -143,9 +144,6 @@ function App() {
             </div>
           </div>
         </section>
-        {/* Interests Section - Blog posts from WordPress */}
-        <InterestsSection />
-
         {/* Projects Section */}
         <section style={{
           padding: '4rem 2rem',
@@ -195,10 +193,8 @@ function App() {
             </div>
           </div>
         </section>
-
-        {/* Interests Section - Positioned right above contact info */}
-        <About />
-
+        {/* Interests Section - moved above Contact */}
+        <InterestsSection />
         {/* Contact Section - Bottom most */}
         <section style={{
           padding: '3rem 2rem',
