@@ -69,6 +69,30 @@ function MeshBackground() {
   );
 }
 
+// Add a floating particles background
+function ParticlesBackground() {
+  return (
+    <svg style={{position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none'}} width="100%" height="100%" viewBox="0 0 1440 600">
+      {[...Array(18)].map((_, i) => (
+        <circle
+          key={i}
+          cx={Math.random() * 1440}
+          cy={Math.random() * 600}
+          r={Math.random() * 8 + 3}
+          fill="url(#particleGradient)"
+          opacity={0.18 + Math.random() * 0.18}
+        />
+      ))}
+      <defs>
+        <radialGradient id="particleGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#8b5cf6" />
+          <stop offset="100%" stopColor="#6366f1" />
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
 // Abstract floating text component
 function FloatingText({ text, delay = 0 }) {
   return (
@@ -140,11 +164,12 @@ export default function Hero() {
         minHeight: isMobile ? 'auto' : '70vh',
         padding: isMobile ? '2rem 0.5rem' : undefined,
         overflow: 'hidden',
-        background: 'radial-gradient(ellipse at 60% 40%, #0f0f23 0%, #1e1b4b 50%, #312e81 100%)',
+        background: 'linear-gradient(120deg, #1e293b 0%, #6366f1 100%)',
       }}
     >
-      {/* Darker mesh SVG background */}
+      {/* Dynamic mesh and particles background */}
       <MeshBackground />
+      <ParticlesBackground />
       {/* Abstract floating text elements */}
       <FloatingText text="DATA" style={{ top: '15%', left: '10%' }} delay={0} />
       <FloatingText text="AUTOMATION" style={{ top: '25%', right: '15%' }} delay={2} />
@@ -153,7 +178,8 @@ export default function Hero() {
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         style={{ 
           flex: 1, 
@@ -224,7 +250,8 @@ export default function Hero() {
             flexDirection: isMobile ? 'column' : 'row',
           }}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6 }}
         >
           <motion.button
@@ -253,6 +280,14 @@ export default function Hero() {
               overflow: 'hidden',
               width: isMobile ? '90%' : 'auto',
               margin: isMobile ? '0.25rem 0' : 0
+            }}
+            onMouseDown={e => {
+              const ripple = document.createElement('span');
+              ripple.className = 'ripple';
+              ripple.style.left = `${e.nativeEvent.offsetX}px`;
+              ripple.style.top = `${e.nativeEvent.offsetY}px`;
+              e.currentTarget.appendChild(ripple);
+              setTimeout(() => ripple.remove(), 600);
             }}
           >
             <motion.span
@@ -400,7 +435,8 @@ export default function Hero() {
       <motion.div
         className="hero-photo"
         initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
         style={{ 
           flex: 1, 
@@ -412,24 +448,45 @@ export default function Hero() {
           marginTop: isMobile ? '1.5rem' : 0
         }}
       >
-        <motion.img
-          src={profileImg}
-          alt="Shivani Sawant"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          style={{
-            width: isMobile ? 140 : 240,
-            height: isMobile ? 140 : 240,
-            borderRadius: '50%',
-            objectFit: 'cover',
-            objectPosition: 'center 30%',
-            boxShadow: '0 0 32px #a855f7',
-            border: '4px solid #a855f7',
-            background: '#1e1b4b',
-            filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
+        <motion.div
+          animate={{
+            boxShadow: [
+              '0 0 32px 8px #a855f7',
+              '0 0 48px 16px #8b5cf6',
+              '0 0 32px 8px #a855f7'
+            ]
           }}
-        />
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          style={{
+            borderRadius: '50%',
+            padding: 8,
+            background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+            display: 'inline-block',
+          }}
+        >
+          <motion.img
+            src={profileImg}
+            alt="Shivani Sawant"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            style={{
+              width: isMobile ? 140 : 240,
+              height: isMobile ? 140 : 240,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              objectPosition: 'center 30%',
+              boxShadow: '0 0 32px #a855f7',
+              border: '4px solid #fff',
+              background: '#1e1b4b',
+              filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
+            }}
+          />
+        </motion.div>
       </motion.div>
     </section>
   );
