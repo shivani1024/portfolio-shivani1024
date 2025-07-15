@@ -168,7 +168,7 @@ export default function Hero() {
           style={{ 
             fontSize: isMobile ? '2rem' : '2.8rem', 
             fontWeight: 800, 
-            color: '#d1d5db', 
+            color: '#a855f7', 
             marginBottom: '1.2rem', 
             lineHeight: 1.1,
             textShadow: '0 0 15px rgba(168, 85, 247, 0.3)',
@@ -445,7 +445,7 @@ export default function Hero() {
             borderRadius: '50%',
             objectFit: 'cover',
             objectPosition: 'center 30%',
-            boxShadow: '0 4px 32px rgba(168, 85, 247, 0.2)',
+            boxShadow: '0 0 32px #a855f7',
             border: '4px solid #a855f7',
             background: '#1e1b4b',
             filter: 'drop-shadow(0 0 16px rgba(168, 85, 247, 0.3))',
