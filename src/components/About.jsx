@@ -1,14 +1,85 @@
 import { motion } from 'framer-motion';
-import { FaJava, FaPython, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
+import { FaJava, FaPython, FaDatabase, FaCloud, FaRobot, FaCode, FaCogs, FaProjectDiagram, FaTools, FaChartBar, FaNetworkWired } from 'react-icons/fa';
 import profileImg from '../assets/portfolio.jpg';
 import aboutImg from '../assets/1.jpeg';
 
-const skills = [
-  { icon: <FaJava />, label: 'Java', level: 90 },
-  { icon: <FaPython />, label: 'Python', level: 85 },
-  { icon: <FaDatabase />, label: 'SQL', level: 80 },
-  { icon: <FaCloud />, label: 'Oracle Cloud', level: 75 },
-  { icon: <FaRobot />, label: 'Automation', level: 80 },
+const skillGroups = [
+  {
+    label: 'Languages & Development',
+    icon: <FaCode />,
+    skills: ['Java', 'SQL', 'PL/SQL', 'Python', 'R', 'C', 'GitLab'],
+  },
+  {
+    label: 'Oracle Technologies',
+    icon: <FaCloud />,
+    skills: [
+      'Fusion Cloud Applications (ERP/SCM/HCM)',
+      'BI Publisher',
+      'Integration Cloud',
+      'Analytics Cloud',
+      'Business Process Management (BPM)',
+      'Flexfields',
+      'Value Sets',
+      'Oracle Security Framework',
+      'FBDI',
+      'OTBI',
+      'FRS Reports',
+    ],
+  },
+  {
+    label: 'Intelligence & Automation',
+    icon: <FaRobot />,
+    skills: [
+      'Alteryx',
+      'UiPath',
+      'IDR',
+      'PowerBI',
+      'Tableau',
+      'RTF Templates',
+      'BI Cloud Connector',
+      'Process Automation',
+      'Postman',
+    ],
+  },
+  {
+    label: 'Integration & Development',
+    icon: <FaNetworkWired />,
+    skills: [
+      'REST/SOAP Web Services',
+      'XML/WSDL',
+      'API Integration',
+      'Data Mapping',
+      'ETL',
+      'DevOps/CI/CD',
+    ],
+  },
+  {
+    label: 'Data & System Integration',
+    icon: <FaDatabase />,
+    skills: [
+      'Data Migration',
+      'System Integration',
+      'EDI Connections',
+      'Data Conversion',
+      'Chart of Accounts Design',
+      'Financial Systems Implementation',
+      'Application Integration',
+      'Master Data Management',
+    ],
+  },
+  {
+    label: 'Management',
+    icon: <FaProjectDiagram />,
+    skills: [
+      'Agile/Scrum',
+      'Waterfall',
+      'ITIL',
+      'UAT/SIT Testing',
+      'Requirements Analysis',
+      'Technical Documentation',
+      'Team Leadership',
+    ],
+  },
 ];
 
 export default function About() {
@@ -44,20 +115,17 @@ export default function About() {
             Amherst, MA, USA
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 32, marginTop: 32, justifyContent: 'flex-start', flexWrap: 'wrap' }}>
-          {skills.map(skill => (
-            <div key={skill.label} style={{ minWidth: 110, textAlign: 'center' }}>
-              <div style={{ fontSize: 36, color: '#a855f7', marginBottom: 8 }}>{skill.icon}</div>
-              <div style={{ fontWeight: 700, color: '#fff', marginBottom: 6 }}>{skill.label}</div>
-              <motion.div style={{ background: '#23243a', borderRadius: 8, height: 8, marginTop: 0 }}>
-                <motion.div
-                  style={{ background: 'linear-gradient(90deg, #a855f7 0%, #c084fc 100%)', height: 8, borderRadius: 8 }}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: skill.level + '%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1 }}
-                />
-              </motion.div>
+        <h3 style={{ color: '#a855f7', fontWeight: 700, fontSize: 26, marginTop: 36, marginBottom: 18 }}>Skills</h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, marginTop: 8 }}>
+          {skillGroups.map(group => (
+            <div key={group.label} style={{ minWidth: 220, background: 'rgba(168,85,247,0.10)', borderRadius: 14, padding: '1.2rem 1.3rem', marginBottom: 12, boxShadow: '0 2px 12px #a855f733' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                <span style={{ fontSize: 22, color: '#a855f7' }}>{group.icon}</span>
+                <span style={{ fontWeight: 700, color: '#c084fc', fontSize: 18 }}>{group.label}</span>
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18, color: '#e0e0e0', fontSize: 15 }}>
+                {group.skills.map(skill => <li key={skill}>{skill}</li>)}
+              </ul>
             </div>
           ))}
         </div>

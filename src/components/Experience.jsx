@@ -53,7 +53,7 @@ export default function Experience() {
       <h2 className="section-title">Experience</h2>
       <motion.div
         className="timeline"
-        style={{ display: 'flex', flexDirection: 'column', gap: 32, padding: '0 8vw', position: 'relative' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: 36, padding: '0 8vw', position: 'relative', width: '100%' }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -63,24 +63,43 @@ export default function Experience() {
           <motion.div
             key={item.title + i}
             className="timeline-item"
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8, cursor: 'pointer', background: '#f3e8ff', borderRadius: 12, padding: 20, boxShadow: openIdx === i ? '0 4px 24px #a855f755' : 'none' }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: 8,
+              cursor: 'pointer',
+              background: 'rgba(168, 85, 247, 0.13)',
+              border: '1.5px solid rgba(168, 85, 247, 0.22)',
+              borderRadius: 22,
+              padding: '2.2rem 2.5rem',
+              boxShadow: openIdx === i ? '0 6px 32px #a855f799' : '0 2px 12px #a855f733',
+              transition: 'box-shadow 0.2s, border 0.2s',
+              position: 'relative',
+              width: '100%',
+            }}
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 200 }}
             onClick={() => setOpenIdx(openIdx === i ? null : i)}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <div style={{ fontSize: 32, color: 'var(--accent-dark)', minWidth: 40 }}><FaBriefcase /></div>
-              <div>
-                <div style={{ fontWeight: 700, fontSize: 18, color: 'var(--accent-dark)' }}>{item.title}</div>
-                <div style={{ fontSize: 15, color: '#a084f5', marginBottom: 4 }}>{item.date}</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ fontSize: 32, color: 'var(--accent-dark)', minWidth: 40 }}><FaBriefcase /></div>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: 20, color: '#c084fc' }}>{item.title}</div>
+                  <div style={{ fontSize: 15, color: '#a084f5', marginBottom: 4 }}>{item.date}</div>
+                </div>
+              </div>
+              <div style={{ fontSize: 28, color: '#a855f7', marginLeft: 18, userSelect: 'none', transition: 'transform 0.2s', transform: openIdx === i ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+                ▶
               </div>
             </div>
             {openIdx === i && (
-              <div style={{ marginTop: 12, marginLeft: 56 }}>
+              <div style={{ marginTop: 18, borderTop: '1px solid #a855f733', paddingTop: 12, marginLeft: 56 }}>
                 {item.details.map((detail, j) => (
                   <div key={j} style={{ marginBottom: 16 }}>
                     {detail.subtitle && <div style={{ fontWeight: 600, color: '#a855f7', fontSize: 16 }}>{detail.subtitle} <span style={{ color: '#a084f5', fontWeight: 400, fontSize: 14, marginLeft: 8 }}>{detail.date}</span></div>}
-                    <ul style={{ margin: '8px 0 0 18px', color: '#23243a', fontSize: 15 }}>
+                    <ul style={{ margin: '8px 0 0 18px', color: '#e0e0e0', fontSize: 15 }}>
                       {detail.bullets.map((b, k) => <li key={k} style={{ marginBottom: 4 }}>{b}</li>)}
                     </ul>
                   </div>
