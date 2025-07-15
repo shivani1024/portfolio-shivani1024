@@ -6,6 +6,7 @@ import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import InterestsSection from './components/InterestsSection';
 import Education from './components/Education';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 function App() {
   const particlesInit = async (main) => {
@@ -33,42 +34,64 @@ function App() {
         zIndex: 100,
         boxShadow: '0 2px 12px rgba(36,18,60,0.08)'
       }}>
-        {[
-          { id: 'hero', label: 'Home' },
-          { id: 'about', label: 'About' },
-          { id: 'education', label: 'Education' },
-          { id: 'experience', label: 'Experience' },
-          { id: 'skills', label: 'Technical Skills' },
-          { id: 'projects', label: 'Projects' },
-          { id: 'interests-blog', label: 'Interests' },
-          { id: 'contact', label: 'Contact' },
-        ].map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => {
-              const el = document.getElementById(id);
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            style={{
-              background: window.location.hash === `#${id}` ? '#a855f7' : 'transparent',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 16,
-              padding: '0.7rem 2.5rem',
-              fontWeight: 700,
-              fontSize: '1.25rem',
-              margin: '0 0.5rem',
-              cursor: 'pointer',
-              transition: 'background 0.2s',
-              outline: 'none',
-              boxShadow: window.location.hash === `#${id}` ? '0 2px 12px #a855f7aa' : 'none',
-            }}
-            onMouseOver={e => e.currentTarget.style.background = '#a855f7'}
-            onMouseOut={e => e.currentTarget.style.background = window.location.hash === `#${id}` ? '#a855f7' : 'transparent'}
-          >
-            {label}
-          </button>
-        ))}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1, justifyContent: 'center' }}>
+          {[
+            { id: 'hero', label: 'Home' },
+            { id: 'about', label: 'About' },
+            { id: 'education', label: 'Education' },
+            { id: 'experience', label: 'Experience' },
+            { id: 'projects', label: 'Projects' },
+            { id: 'interests-blog', label: 'Interests' },
+            { id: 'contact', label: 'Contact' },
+          ].map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => {
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              style={{
+                background: window.location.hash === `#${id}` ? '#a855f7' : 'transparent',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 16,
+                padding: '0.7rem 2.5rem',
+                fontWeight: 700,
+                fontSize: '1.15rem',
+                margin: '0 0.25rem',
+                cursor: 'pointer',
+                transition: 'background 0.2s, color 0.2s, box-shadow 0.2s',
+                outline: 'none',
+                boxShadow: window.location.hash === `#${id}` ? '0 2px 12px #a855f7aa' : 'none',
+                letterSpacing: '0.01em',
+                minWidth: 90,
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.background = '#a855f7';
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.boxShadow = '0 2px 12px #a855f7aa';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = window.location.hash === `#${id}` ? '#a855f7' : 'transparent';
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.boxShadow = window.location.hash === `#${id}` ? '0 2px 12px #a855f7aa' : 'none';
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginLeft: '2rem', marginRight: '2rem' }}>
+          <a href="https://linkedin.com/in/shivani-sawant" target="_blank" rel="noopener noreferrer" style={{ color: '#a855f7', fontSize: 26, transition: 'color 0.2s' }} aria-label="LinkedIn">
+            <FaLinkedin />
+          </a>
+          <a href="https://github.com/shivani1024" target="_blank" rel="noopener noreferrer" style={{ color: '#a855f7', fontSize: 26, transition: 'color 0.2s' }} aria-label="GitHub">
+            <FaGithub />
+          </a>
+          <a href="mailto:shivani41641@gmail.com" style={{ color: '#a855f7', fontSize: 26, transition: 'color 0.2s' }} aria-label="Email">
+            <FaEnvelope />
+          </a>
+        </div>
       </nav>
       <Particles
         id="tsparticles"
