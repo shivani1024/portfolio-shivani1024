@@ -86,8 +86,8 @@ export default function About() {
   return (
     <section className="section" id="about" style={{
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
       background: '#23243a',
       borderRadius: 24,
       boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
@@ -97,6 +97,7 @@ export default function About() {
       color: '#e0e0e0',
       position: 'relative',
       overflow: 'hidden',
+      gap: 48,
     }}>
       <motion.div
         className="about-text"
@@ -104,7 +105,7 @@ export default function About() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        style={{ flex: 1, paddingLeft: '4vw', textAlign: 'left' }}
+        style={{ flex: 1.2, paddingLeft: '4vw', textAlign: 'left', minWidth: 320 }}
       >
         <h2 style={{ fontSize: '2.8rem', fontWeight: 800, color: '#a855f7', marginBottom: 24 }}>About Me</h2>
         <div style={{ fontSize: '1.25rem', marginBottom: 32, color: '#e0e0e0', fontWeight: 400 }}>
@@ -118,7 +119,7 @@ export default function About() {
         <h3 style={{ color: '#a855f7', fontWeight: 700, fontSize: 26, marginTop: 36, marginBottom: 18 }}>Skills</h3>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 20,
           marginTop: 8,
         }}>
@@ -159,7 +160,7 @@ export default function About() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 240 }}
+        style={{ flex: 0.8, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: 240 }}
       >
         <img src={aboutImg} alt="Shivani Sawant" style={{ width: 220, height: 220, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 0 32px #a855f7', border: '4px solid #a855f7', background: '#1e1b4b' }} />
       </motion.div>
