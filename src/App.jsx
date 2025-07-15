@@ -128,7 +128,7 @@ function App() {
             <button
               key={id}
               onClick={() => {
-                const el = document.getElementById(id);
+                const el = document.getElementById(id === 'contact' ? 'get-in-touch' : id);
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
               style={{
@@ -162,28 +162,6 @@ function App() {
             </button>
           ))}
         </div>
-        {/* Let's Connect Button */}
-        <button
-          onClick={() => {
-            const el = document.getElementById('contact');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          style={{
-            marginLeft: 24,
-            background: 'linear-gradient(90deg, #a855f7 0%, #c084fc 100%)',
-            color: '#fff',
-            fontWeight: 700,
-            fontSize: 17,
-            border: 'none',
-            borderRadius: 8,
-            padding: '0.6rem 1.6rem',
-            cursor: 'pointer',
-            boxShadow: '0 2px 12px #a855f755',
-            transition: 'background 0.2s',
-          }}
-        >
-          Let's Connect
-        </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginLeft: '2rem', marginRight: '2rem' }}>
           <a href="https://www.linkedin.com/in/shivani-sawant-79a823151/" target="_blank" rel="noopener noreferrer" style={{ color: '#a855f7', fontSize: 26, transition: 'color 0.2s' }} aria-label="LinkedIn">
             <FaLinkedin />
@@ -341,7 +319,7 @@ function App() {
         {/* Interests Section - moved above Contact */}
         <InterestsSection />
         {/* Contact Section - Bottom most */}
-        <section style={{
+        <section id="get-in-touch" style={{
           padding: '3rem 2rem',
           background: 'rgba(36, 18, 60, 0.35)',
           backdropFilter: 'blur(12px)',
