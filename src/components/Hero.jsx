@@ -180,6 +180,16 @@ function FloatingText({ text, delay = 0 }) {
 }
 
 export default function Hero() {
+  const [text] = useTypewriter({
+    words: [
+      "Oracle Consultant",
+      "Data Engineer",
+      "Automation Expert",
+      "Technical Leader"
+    ],
+    loop: true,
+    delaySpeed: 700,
+  });
   return (
     <section
       className="hero-bg section glass"
@@ -226,6 +236,9 @@ export default function Hero() {
           fontFamily: 'Inter, Segoe UI, sans-serif',
         }}>
           Specialized in Oracle Cloud applications, business intelligence, and automated workflows. Proven track record of delivering enterprise solutions that drive operational efficiency.
+        </div>
+        <div style={{ fontSize: 26, fontWeight: 600, color: '#fff', minHeight: 40, marginBottom: 32 }}>
+          <span>{text}</span>
         </div>
         <button
           className="cta-button"
