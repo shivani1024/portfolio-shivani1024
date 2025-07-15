@@ -249,7 +249,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
         >
           <motion.button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => scrollToSection('get-in-touch')}
             whileHover={{ 
               scale: 1.08, 
               background: '#a855f7', 

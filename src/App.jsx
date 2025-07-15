@@ -380,7 +380,29 @@ function App() {
                   📧 Email Me
                 </a>
                 <a 
-                  href="https://linkedin.com/in/shivani-sawant"
+                  href="tel:+14134661539"
+                  style={{
+                    color: '#c084fc',
+                    textDecoration: 'none',
+                    padding: '0.75rem 1.5rem',
+                    border: '2px solid #a855f7',
+                    borderRadius: '8px',
+                    transition: 'all 0.3s ease',
+                    background: 'rgba(168, 85, 247, 0.1)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = 'rgba(168, 85, 247, 0.2)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  📞 +1 413-466-1539
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/shivani-sawant-79a823151/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -426,21 +448,21 @@ function App() {
                   }}
                 >
                   🐙 GitHub
-        </a>
-      </div>
-            <p style={{
-              fontSize: '1rem',
-              color: '#c084fc',
-              marginTop: '2rem',
-              fontStyle: 'italic'
-            }}>
-              Based in Massachusetts, open to remote and relocation opportunities
-        </p>
-      </div>
-        </div>
-      </section>
-    </div> {/* closes <div style={{ position: 'relative', zIndex: 1 }}> */}
-  </div> // closes main <div className="App" ...>
+                </a>
+              </div>
+              <p style={{
+                fontSize: '1rem',
+                color: '#c084fc',
+                marginTop: '2rem',
+                fontStyle: 'italic'
+              }}>
+                Based in Massachusetts, open to remote and relocation opportunities
+              </p>
+            </div>
+          </div>
+        </section>
+      </div> {/* closes <div style={{ position: 'relative', zIndex: 1 }}> */}
+    </div> // closes main <div className="App" ...>
   );
 }
 
