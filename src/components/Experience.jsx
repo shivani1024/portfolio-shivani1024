@@ -53,7 +53,7 @@ export default function Experience() {
       <h2 className="section-title">Experience</h2>
       <motion.div
         className="timeline"
-        style={{ display: 'flex', flexDirection: 'column', gap: 36, padding: '0 8vw', position: 'relative', width: '100%' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: 36, alignItems: 'center', width: '100%' }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -64,16 +64,15 @@ export default function Experience() {
             key={item.title + i}
             className="timeline-item"
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: 8,
-              cursor: 'pointer',
               background: 'rgba(168, 85, 247, 0.13)',
               border: '1.5px solid rgba(168, 85, 247, 0.22)',
               borderRadius: 22,
-              padding: '2.2rem 2.5rem',
               boxShadow: openIdx === i ? '0 6px 32px #a855f799' : '0 2px 12px #a855f733',
+              padding: '2.2rem 2.5rem',
+              minWidth: 340,
+              maxWidth: 600,
+              cursor: 'pointer',
+              textAlign: 'left',
               transition: 'box-shadow 0.2s, border 0.2s',
               position: 'relative',
               width: '100%',
@@ -87,7 +86,7 @@ export default function Experience() {
                 <div style={{ fontSize: 32, color: 'var(--accent-dark)', minWidth: 40 }}><FaBriefcase /></div>
                 <div>
                   <div style={{ fontWeight: 800, fontSize: 20, color: '#c084fc' }}>{item.title}</div>
-                  <div style={{ fontSize: 15, color: '#a084f5', marginBottom: 4 }}>{item.date}</div>
+                  <div style={{ color: '#a855f7', fontWeight: 600, fontSize: 15, marginTop: 2 }}>{item.date}</div>
                 </div>
               </div>
               <div style={{ fontSize: 28, color: '#a855f7', marginLeft: 18, userSelect: 'none', transition: 'transform 0.2s', transform: openIdx === i ? 'rotate(90deg)' : 'rotate(0deg)' }}>
