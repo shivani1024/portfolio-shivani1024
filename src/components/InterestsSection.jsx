@@ -84,6 +84,13 @@ function ImageWithFallback({ src, alt, ...props }) {
   );
 }
 
+// Add a function to decode HTML entities
+function decodeHtml(html) {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
+}
+
 export default function InterestsSection() {
   const [current, setCurrent] = useState(0);
   const [blogPosts, setBlogPosts] = useState([]);
@@ -103,8 +110,8 @@ export default function InterestsSection() {
         if (!res.ok) throw new Error('Failed to fetch blog posts');
         const data = await res.json();
         const posts = data.posts.map(post => ({
-          title: post.title,
-          excerpt: post.excerpt.replace(/<[^>]+>/g, '').slice(0, 180) + '...',
+          title: decodeHtml(post.title),
+          excerpt: decodeHtml(post.excerpt.replace(/<[^>]+>/g, '').slice(0, 180) + '...'),
           image: post.featured_image || '',
           url: post.URL
         }));
