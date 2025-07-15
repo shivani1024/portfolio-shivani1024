@@ -102,11 +102,10 @@ function FloatingText({ text, delay = 0 }) {
 export default function Hero() {
   const [text] = useTypewriter({
     words: [
-      "I'm Shivani Sawant.",
-      "Engineering Management Master's Student.",
-      "Oracle Consultant.",
-      "Automation Expert.",
-      "Data Engineer."
+      "Oracle Consultant",
+      "Data Engineer",
+      "Automation Expert",
+      "Technical Leader"
     ],
     loop: true,
     delaySpeed: 700,
@@ -132,7 +131,7 @@ export default function Hero() {
     <section
       className="section glass"
       id="hero"
-            style={{
+      style={{
         position: 'relative',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
@@ -169,7 +168,7 @@ export default function Hero() {
             fontSize: isMobile ? '2rem' : '2.8rem', 
             fontWeight: 800, 
             color: '#a855f7', 
-            marginBottom: '1.2rem', 
+            marginBottom: '0.5rem', 
             lineHeight: 1.1,
             textShadow: '0 0 15px rgba(168, 85, 247, 0.3)',
             position: 'relative'
@@ -187,34 +186,14 @@ export default function Hero() {
             ease: "easeInOut"
           }}
         >
-          <span style={{ position: 'relative' }}>
-            {text}
-            {/* Glitch effect overlay */}
-            <motion.span
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                color: '#ef4444',
-                opacity: 0,
-                clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
-              }}
-              animate={{
-                opacity: [0, 1, 0],
-                x: [-2, 2, -2],
-              }}
-              transition={{
-                duration: 0.1,
-                repeat: Infinity,
-                repeatDelay: 5,
-                ease: "easeInOut"
-              }}
-            >
-              {text}
-            </motion.span>
-          </span>
-          <span className="typewriter-cursor" style={{ color: '#a855f7', fontWeight: 400 }}>|</span>
+          Shivani Sawant
         </motion.h1>
+        <div style={{ color: '#e0e0e0', fontSize: isMobile ? 18 : 22, fontWeight: 500, marginBottom: 18 }}>
+          MS Engineering Management, UMass Amherst
+        </div>
+        <div style={{ fontSize: isMobile ? 20 : 28, fontWeight: 700, color: '#8b5cf6', minHeight: 40, marginBottom: 24 }}>
+          <span>{text}</span>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
