@@ -105,40 +105,14 @@ export default function InterestsSection() {
       });
   }, []);
 
-  // Blog posts first, then city slides
-  const slides = [
-    ...blogPosts.map(post => ({ type: 'blog', ...post })),
-    ...cityData.map(city => ({ type: 'city', ...city })),
-  ];
+  // City slides only for the slider
+  const slides = cityData.map(city => ({ type: 'city', ...city }));
   const total = slides.length;
 
   const goLeft = () => setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
   const goRight = () => setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
 
   const slide = slides[current];
-
-  // Fallback if no slides at all
-  if (!loading && slides.length === 0) {
-    return (
-      <section id="interests-blog" style={{
-        padding: '4rem 2rem',
-        background: 'rgba(36, 18, 60, 0.35)',
-        borderRadius: 24,
-        maxWidth: 900,
-        margin: '3rem auto',
-        color: '#e0e0e0',
-        textAlign: 'center',
-      }}>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '2rem', color: '#a855f7' }}>
-          My Travel Experiences
-        </h2>
-        <div style={{ color: '#c084fc', fontSize: 20, margin: '2rem 0' }}>
-          No travel experiences or blog posts found.<br/>
-          <span style={{ fontSize: 16 }}>If you see this, make sure you have uploaded your images to <b>public/images/</b> and your blog is accessible.</span>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="interests-blog" style={{
@@ -153,110 +127,151 @@ export default function InterestsSection() {
       textAlign: 'center',
       position: 'relative',
     }}>
+      {/* Blog Section */}
       <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '2rem', color: '#a855f7' }}>
-        My Travel Experiences
+        My Interests: Travel & Food Blog
       </h2>
+      <p style={{ color: '#c084fc', fontSize: '1.2rem', marginBottom: '2.5rem' }}>
+        Exploring the world, one adventure at a time. Read my latest stories from <a href="https://travelingepicure.wordpress.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#a855f7', textDecoration: 'underline' }}>travelingepicure.wordpress.com</a>
+      </p>
       {loading ? (
         <div style={{ color: '#a855f7', fontSize: 20, margin: '2rem 0' }}>Loading blog posts...</div>
+      ) : error ? (
+        <div style={{ color: 'salmon', fontSize: 18, margin: '2rem 0' }}>{error}</div>
+      ) : blogPosts.length === 0 ? (
+        <div style={{ color: '#c084fc', fontSize: 20, margin: '2rem 0' }}>
+          No blog posts found.<br/>
+          <span style={{ fontSize: 16 }}>If you see this, make sure your blog is accessible.</span>
+        </div>
       ) : (
-        <>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
-            <button onClick={goLeft} aria-label="Previous slide" style={{
-              background: 'none',
-              border: 'none',
-              color: '#a855f7',
-              fontSize: 36,
-              cursor: 'pointer',
-              padding: 8,
-              borderRadius: '50%',
-              transition: 'background 0.2s',
-            }}>&#8592;</button>
-            <div style={{
-              background: 'rgba(80, 36, 120, 0.18)',
-              borderRadius: 32,
-              boxShadow: '0 4px 32px 0 rgba(168, 85, 247, 0.10)',
-              padding: '2.5rem 2rem',
-              minWidth: 400,
-              maxWidth: 700,
-              flex: 1,
-            }}>
-              {slide ? (
-                slide.type === 'city' ? (
-                  <>
-                    <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 28, marginBottom: 18 }}>{slide.name}</h3>
-                    <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
-                      {slide.images && slide.images.length > 0 ? (
-                        slide.images.map((img, idx) => (
-                          <ImageWithFallback
-                            key={img}
-                            src={img}
-                            alt={`${slide.name} travel ${idx + 1}`}
-                          />
-                        ))
-                      ) : (
-                        <div style={{ color: '#a855f7', fontSize: 16, margin: '1rem auto' }}>No images found for this city.<br/>Upload your images to <b>public/images/</b> and update the code if needed.</div>
-                      )}
-                    </div>
-                    <div style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8 }}>{slide.description}</div>
-                  </>
-                ) : slide.type === 'blog' ? (
-                  <>
-                    <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>{slide.title}</h3>
-                    {slide.featured_image && (
-                      <img src={slide.featured_image} alt={slide.title} style={{
-                        width: '100%',
-                        maxHeight: 220,
-                        objectFit: 'cover',
-                        borderRadius: 12,
-                        marginBottom: 18,
-                        boxShadow: '0 2px 12px #a855f755',
-                        background: '#1e1b4b',
-                      }} />
-                    )}
-                    <div style={{ color: '#e0e0e0', fontSize: 16, marginBottom: 16 }}
-                      dangerouslySetInnerHTML={{ __html: slide.excerpt }} />
-                    <a href={slide.URL} target="_blank" rel="noopener noreferrer" style={{
-                      color: '#a855f7',
-                      fontWeight: 600,
-                      textDecoration: 'underline',
-                      marginTop: 'auto',
-                      fontSize: 16,
-                    }}>
-                      Read Full Story →
-                    </a>
-                  </>
-                ) : null
-              ) : (
-                <div style={{ color: '#a855f7', fontSize: 18 }}>No slides to display.</div>
-              )}
-            </div>
-            <button onClick={goRight} aria-label="Next slide" style={{
-              background: 'none',
-              border: 'none',
-              color: '#a855f7',
-              fontSize: 36,
-              cursor: 'pointer',
-              padding: 8,
-              borderRadius: '50%',
-              transition: 'background 0.2s',
-            }}>&#8594;</button>
-          </div>
-          <div style={{ marginTop: 24, color: '#c084fc', fontSize: 16 }}>
-            {slides.map((s, idx) => (
-              <span key={s.type === 'city' ? s.name : s.ID} style={{
-                display: 'inline-block',
-                width: 12,
-                height: 12,
-                borderRadius: '50%',
-                background: idx === current ? '#a855f7' : '#c084fc55',
-                margin: '0 6px',
-                transition: 'background 0.2s',
-              }} />
-            ))}
-          </div>
-        </>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: '2rem',
+          marginTop: '2rem',
+          marginBottom: '3.5rem',
+        }}>
+          {blogPosts.map((post) => {
+            let imageUrl = '';
+            if (post.featured_image) {
+              imageUrl = post.featured_image;
+            } else if (post.attachments && Object.values(post.attachments).length > 0) {
+              const firstImg = Object.values(post.attachments)[0];
+              imageUrl = firstImg.URL;
+            }
+            return (
+              <div key={post.ID} style={{
+                background: 'rgba(168, 85, 247, 0.10)',
+                border: '1px solid rgba(168, 85, 247, 0.18)',
+                borderRadius: 18,
+                boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.12)',
+                padding: '2rem',
+                textAlign: 'left',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                minHeight: 340,
+                position: 'relative',
+                overflow: 'hidden',
+              }}>
+                {imageUrl && (
+                  <img src={imageUrl} alt={post.title} style={{
+                    width: '100%',
+                    maxHeight: 180,
+                    objectFit: 'cover',
+                    borderRadius: 12,
+                    marginBottom: 18,
+                    boxShadow: '0 2px 12px #a855f755',
+                    background: '#1e1b4b',
+                  }} />
+                )}
+                <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>{post.title}</h3>
+                <div style={{ color: '#e0e0e0', fontSize: 16, marginBottom: 16 }}
+                  dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                <a href={post.URL} target="_blank" rel="noopener noreferrer" style={{
+                  color: '#a855f7',
+                  fontWeight: 600,
+                  textDecoration: 'underline',
+                  marginTop: 'auto',
+                  fontSize: 16,
+                }}>
+                  Read Full Story →
+                </a>
+              </div>
+            );
+          })}
+        </div>
       )}
-      {error && <div style={{ color: 'salmon', fontSize: 18, marginTop: 16 }}>{error}</div>}
+      {/* City Slider Section */}
+      <h2 style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '1.5rem', color: '#a855f7', marginTop: '2.5rem' }}>
+        My Travel Experiences
+      </h2>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
+        <button onClick={goLeft} aria-label="Previous slide" style={{
+          background: 'none',
+          border: 'none',
+          color: '#a855f7',
+          fontSize: 36,
+          cursor: 'pointer',
+          padding: 8,
+          borderRadius: '50%',
+          transition: 'background 0.2s',
+        }}>&#8592;</button>
+        <div style={{
+          background: 'rgba(80, 36, 120, 0.18)',
+          borderRadius: 32,
+          boxShadow: '0 4px 32px 0 rgba(168, 85, 247, 0.10)',
+          padding: '2.5rem 2rem',
+          minWidth: 400,
+          maxWidth: 700,
+          flex: 1,
+        }}>
+          {slide ? (
+            <>
+              <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 28, marginBottom: 18 }}>{slide.name}</h3>
+              <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
+                {slide.images && slide.images.length > 0 ? (
+                  slide.images.map((img, idx) => (
+                    <ImageWithFallback
+                      key={img}
+                      src={img}
+                      alt={`${slide.name} travel ${idx + 1}`}
+                    />
+                  ))
+                ) : (
+                  <div style={{ color: '#a855f7', fontSize: 16, margin: '1rem auto' }}>No images found for this city.<br/>Upload your images to <b>public/images/</b> and update the code if needed.</div>
+                )}
+              </div>
+              <div style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8 }}>{slide.description}</div>
+            </>
+          ) : (
+            <div style={{ color: '#a855f7', fontSize: 18 }}>No slides to display.</div>
+          )}
+        </div>
+        <button onClick={goRight} aria-label="Next slide" style={{
+          background: 'none',
+          border: 'none',
+          color: '#a855f7',
+          fontSize: 36,
+          cursor: 'pointer',
+          padding: 8,
+          borderRadius: '50%',
+          transition: 'background 0.2s',
+        }}>&#8594;</button>
+      </div>
+      <div style={{ marginTop: 24, color: '#c084fc', fontSize: 16 }}>
+        {slides.map((s, idx) => (
+          <span key={s.name} style={{
+            display: 'inline-block',
+            width: 12,
+            height: 12,
+            borderRadius: '50%',
+            background: idx === current ? '#a855f7' : '#c084fc55',
+            margin: '0 6px',
+            transition: 'background 0.2s',
+          }} />
+        ))}
+      </div>
     </section>
   );
 } 
