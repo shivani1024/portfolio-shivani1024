@@ -180,5 +180,101 @@ function FloatingText({ text, delay = 0 }) {
 }
 
 export default function Hero() {
-  return <div style={{color: '#fff', fontSize: 32, padding: 40}}>Hello World</div>;
+  return (
+    <section
+      className="hero-bg section glass"
+      id="hero"
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        minHeight: '70vh',
+        padding: '120px 0',
+        overflow: 'hidden',
+        background: '#1a1a2e',
+      }}
+    >
+      <div
+        className="hero-content"
+        style={{ 
+          flex: 1, 
+          paddingLeft: '8vw', 
+          zIndex: 2,
+          textAlign: 'left',
+        }}
+      >
+        <h1 style={{
+          fontSize: '3rem',
+          fontWeight: 800,
+          color: '#fff',
+          fontFamily: 'Inter, Segoe UI, sans-serif',
+          letterSpacing: '-0.02em',
+          marginBottom: 12,
+          marginTop: 0,
+          lineHeight: 1.1,
+        }}>
+          Oracle Solutions Architect & Automation Expert
+        </h1>
+        <div style={{
+          color: '#a0a0a0',
+          fontSize: 22,
+          fontWeight: 400,
+          lineHeight: 1.6,
+          marginBottom: 18,
+          fontFamily: 'Inter, Segoe UI, sans-serif',
+        }}>
+          Specialized in Oracle Cloud applications, business intelligence, and automated workflows. Proven track record of delivering enterprise solutions that drive operational efficiency.
+        </div>
+        <button
+          className="cta-button"
+          style={{
+            background: '#6366f1',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: 8,
+            fontWeight: 500,
+            color: '#fff',
+            fontSize: 18,
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+            marginTop: 8,
+            marginBottom: 8,
+            cursor: 'pointer',
+          }}
+        >
+          Let's Connect
+        </button>
+      </div>
+      <div
+        className="hero-photo"
+        style={{ 
+          flex: 1, 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          minHeight: 320, 
+          zIndex: 2,
+          marginTop: 0
+        }}
+      >
+        <img
+          src={profileImg}
+          alt="Shivani Sawant"
+          style={{
+            width: 220,
+            height: 220,
+            borderRadius: '50%',
+            objectFit: 'cover',
+            objectPosition: 'center 30%',
+            border: '3px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+            background: '#1e1b4b',
+            filter: 'drop-shadow(0 0 8px #6366f1)',
+          }}
+        />
+      </div>
+    </section>
+  );
 } 
