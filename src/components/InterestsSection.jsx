@@ -1,25 +1,4 @@
-import React, { useState } from 'react';
-
-const blogPosts = [
-  {
-    title: 'Explore: Chashmeshahi Garden, Kashmir',
-    excerpt: 'Chashmeshahi Garden in Kashmir is a serene escape with lush greenery, flowing springs, and breathtaking views of the Zabarwan mountains. A must-visit for nature lovers and peace seekers.',
-    image: '/images/chashmeshahi.jpg', // Replace with your own image or a placeholder
-    url: 'https://travelingepicure.wordpress.com/2022/07/15/chashmeshahi-garden-kashmir/'
-  },
-  {
-    title: 'Discover: Lidder River, Pahalgam',
-    excerpt: 'The Lidder River in Pahalgam offers crystal-clear waters and scenic beauty. Perfect for a peaceful walk or a riverside picnic, it’s a highlight of any Kashmir trip.',
-    image: '/images/lidderriver.jpg', // Replace with your own image or a placeholder
-    url: 'https://travelingepicure.wordpress.com/2022/07/10/lidder-river-pahalgam/'
-  },
-  {
-    title: 'Experience: Somewhere In The Sky',
-    excerpt: 'Travel solo, do things you were always scared of. The world awaits. You will come back with a thousand memories.',
-    image: '/images/sky.jpg', // Replace with your own image or a placeholder
-    url: 'https://travelingepicure.wordpress.com/2022/07/05/somewhere-in-the-sky/'
-  }
-];
+import React, { useState, useEffect } from 'react';
 
 const cityData = [
   // Replace the URLs below with your own hosted images (e.g., /images/washington1.jpg if using GitHub/public)
@@ -107,8 +86,37 @@ function ImageWithFallback({ src, alt, ...props }) {
 
 export default function InterestsSection() {
   const [current, setCurrent] = useState(0);
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const slides = cityData;
   const total = slides.length;
+
+  useEffect(() => {
+    async function fetchBlogPosts() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(
+          'https://public-api.wordpress.com/rest/v1.1/sites/travelingepicure.wordpress.com/posts/?number=2'
+        );
+        if (!res.ok) throw new Error('Failed to fetch blog posts');
+        const data = await res.json();
+        const posts = data.posts.map(post => ({
+          title: post.title,
+          excerpt: post.excerpt.replace(/<[^>]+>/g, '').slice(0, 180) + '...',
+          image: post.featured_image || '',
+          url: post.URL
+        }));
+        setBlogPosts(posts);
+      } catch (err) {
+        setError('Could not load blog posts.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchBlogPosts();
+  }, []);
 
   const goLeft = () => setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
   const goRight = () => setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
@@ -142,45 +150,53 @@ export default function InterestsSection() {
         marginTop: '2rem',
         marginBottom: '3.5rem',
       }}>
-        {blogPosts.map((post, idx) => (
-          <div key={idx} style={{
-            background: 'rgba(168, 85, 247, 0.10)',
-            border: '1px solid rgba(168, 85, 247, 0.18)',
-            borderRadius: 18,
-            boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.12)',
-            padding: '2rem',
-            textAlign: 'left',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            minHeight: 340,
-            position: 'relative',
-            overflow: 'hidden',
-          }}>
-            {post.image && (
-              <img src={post.image} alt={post.title} style={{
-                width: '100%',
-                maxHeight: 180,
-                objectFit: 'cover',
-                borderRadius: 12,
-                marginBottom: 18,
-                boxShadow: '0 2px 12px #a855f755',
-                background: '#1e1b4b',
-              }} />
-            )}
-            <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>{post.title}</h3>
-            <div style={{ color: '#e0e0e0', fontSize: 16, marginBottom: 16 }}>{post.excerpt}</div>
-            <a href={post.url} target="_blank" rel="noopener noreferrer" style={{
-              color: '#a855f7',
-              fontWeight: 600,
-              textDecoration: 'underline',
-              marginTop: 'auto',
-              fontSize: 16,
+        {loading ? (
+          <div style={{ color: '#a855f7', fontSize: 20 }}>Loading blog posts...</div>
+        ) : error ? (
+          <div style={{ color: '#f87171', fontSize: 18 }}>{error}</div>
+        ) : blogPosts.length === 0 ? (
+          <div style={{ color: '#a855f7', fontSize: 18 }}>No blog posts found.</div>
+        ) : (
+          blogPosts.map((post, idx) => (
+            <div key={idx} style={{
+              background: 'rgba(168, 85, 247, 0.10)',
+              border: '1px solid rgba(168, 85, 247, 0.18)',
+              borderRadius: 18,
+              boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.12)',
+              padding: '2rem',
+              textAlign: 'left',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              minHeight: 340,
+              position: 'relative',
+              overflow: 'hidden',
             }}>
-              Read Full Story →
-            </a>
-          </div>
-        ))}
+              {post.image && (
+                <img src={post.image} alt={post.title} style={{
+                  width: '100%',
+                  maxHeight: 180,
+                  objectFit: 'cover',
+                  borderRadius: 12,
+                  marginBottom: 18,
+                  boxShadow: '0 2px 12px #a855f755',
+                  background: '#1e1b4b',
+                }} />
+              )}
+              <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>{post.title}</h3>
+              <div style={{ color: '#e0e0e0', fontSize: 16, marginBottom: 16 }}>{post.excerpt}</div>
+              <a href={post.url} target="_blank" rel="noopener noreferrer" style={{
+                color: '#a855f7',
+                fontWeight: 600,
+                textDecoration: 'underline',
+                marginTop: 'auto',
+                fontSize: 16,
+              }}>
+                Read Full Story →
+              </a>
+            </div>
+          ))
+        )}
       </div>
       {/* City Slider Section */}
       <h2 style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '1.5rem', color: '#a855f7', marginTop: '2.5rem' }}>
