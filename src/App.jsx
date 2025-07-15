@@ -244,6 +244,7 @@ function App() {
                   justifyContent: 'flex-start',
                   width: '100%',
                   maxWidth: 370,
+                  textAlign: 'left',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     <span style={{ fontSize: 20, color: '#a855f7' }}>{group.icon}</span>
@@ -257,6 +258,7 @@ function App() {
                     lineHeight: 1.7,
                     listStyle: 'disc',
                     listStylePosition: 'inside',
+                    textAlign: 'left',
                   }}>
                     {group.skills.map(skill => <li key={skill}>{skill}</li>)}
                   </ul>
