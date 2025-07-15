@@ -160,10 +160,10 @@ function App() {
               border: '1px solid rgba(168, 85, 247, 0.2)'
             }}>
               <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
-                Engineering Management Master's Student - UMass
+                Intern - PwC
               </h3>
               <p style={{ color: '#e0e0e0' }}>
-                Currently pursuing advanced studies in engineering management and leadership.
+                Supported consulting teams with research, data analysis, and project coordination during internship at PwC.
               </p>
             </div>
           </div>
