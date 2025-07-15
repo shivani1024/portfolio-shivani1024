@@ -122,13 +122,13 @@ function DotMatrixBackground() {
     <>
       <canvas
         ref={canvasRef}
-        style={{
-          position: 'absolute',
-          inset: 0,
+      style={{
+        position: 'absolute',
+        inset: 0,
           width: '100%',
           height: '100%',
-          zIndex: 0,
-          pointerEvents: 'none',
+        zIndex: 0,
+        pointerEvents: 'none',
           background: '#1a1a2e',
           display: canvasReady ? 'block' : 'none',
         }}
@@ -223,7 +223,7 @@ export default function Hero() {
         background: '#1a1a2e',
       }}
     >
-      <DotMatrixBackground />
+      {/* <DotMatrixBackground /> */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 30 }}
@@ -239,13 +239,13 @@ export default function Hero() {
       >
         <h1 className="hero-title" style={{
           fontSize: isMobile ? '2.2rem' : '3rem',
-          fontWeight: 800,
+            fontWeight: 800, 
           color: '#fff',
           fontFamily: 'Inter, Segoe UI, sans-serif',
           letterSpacing: '-0.02em',
           marginBottom: 12,
           marginTop: 0,
-          lineHeight: 1.1,
+            lineHeight: 1.1,
           animation: 'fadeInUp 0.8s ease-out',
         }}>
           Oracle Solutions Architect & Automation Expert
@@ -273,7 +273,7 @@ export default function Hero() {
             borderRadius: 8,
             fontWeight: 500,
             color: '#fff',
-            fontSize: isMobile ? 16 : 18,
+              fontSize: isMobile ? 16 : 18, 
             transition: 'all 0.3s ease',
             boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
             marginTop: 8,
@@ -291,7 +291,7 @@ export default function Hero() {
             e.currentTarget.style.boxShadow = '0 4px 12px rgba(99, 102, 241, 0.3)';
           }}
         >
-          Let's Connect
+            Let's Connect
         </button>
       </motion.div>
       <motion.div
