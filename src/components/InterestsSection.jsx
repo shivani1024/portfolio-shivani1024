@@ -2,44 +2,49 @@ import React, { useState, useEffect } from 'react';
 
 const cityData = [
   {
-    name: 'Washington DC',
-    images: [
-      'https://i.imgur.com/E9LwQxh.jpg',
-      'https://i.imgur.com/AGTF4UQ.jpg',
-    ],
-    description: `Exploring the capital was a blend of history and modern vibrance. The National Mall, monuments, and cherry blossoms made for unforgettable walks. I loved the museums and the sense of significance everywhere.`
-  },
-  {
-    name: 'Miami',
-    images: [
-      'https://i.imgur.com/E9LwQxh.jpg',
-      'https://i.imgur.com/AGTF4UQ.jpg',
-    ],
-    description: `Miami was all about sun, sand, and vibrant culture. The beaches were stunning, and the food scene was a delicious adventure. I enjoyed the art deco architecture and the lively nightlife.`
-  },
-  {
-    name: 'Niagara Falls',
-    images: [
-      'https://i.imgur.com/E9LwQxh.jpg',
-      'https://i.imgur.com/AGTF4UQ.jpg',
-    ],
-    description: `Witnessing the power of Niagara Falls was awe-inspiring. The mist, the roar, and the rainbows made it magical. The boat ride close to the falls was a thrilling highlight of my travels.`
-  },
-  {
     name: 'New York City',
     images: [
-      'https://i.imgur.com/E9LwQxh.jpg',
-      'https://i.imgur.com/AGTF4UQ.jpg',
+      'https://imgur.com/gjMuj9B.jpg',
+      'https://imgur.com/Saa5ytm.jpg',
+      'https://imgur.com/514MUkN.jpg',
     ],
-    description: `NYC is a city that never sleeps! From Times Square to Central Park, every corner buzzed with energy. I loved the diversity, the food, and the endless things to see and do.`
+    description: 'New York City',
   },
   {
     name: 'Boston',
     images: [
-      'https://i.imgur.com/E9LwQxh.jpg',
-      'https://i.imgur.com/AGTF4UQ.jpg',
+      'https://imgur.com/YqJnGBK.jpg',
+      'https://imgur.com/ma6OigG.jpg',
+      'https://imgur.com/eKT7exr.jpg',
     ],
-    description: `Boston felt like a perfect blend of history and academia. Walking the Freedom Trail and visiting Harvard were highlights. The city’s charm and intellectual vibe made it special.`
+    description: 'Boston',
+  },
+  {
+    name: 'Miami',
+    images: [
+      'https://imgur.com/wir3RIG.jpg',
+      'https://imgur.com/HKhXe3E.jpg',
+      'https://imgur.com/8TYkn5y.jpg',
+    ],
+    description: 'Miami',
+  },
+  {
+    name: 'Washington DC',
+    images: [
+      'https://imgur.com/QxI4EWW.jpg',
+      'https://imgur.com/OyQIOC8.jpg',
+      'https://imgur.com/mZIOIsy.jpg',
+    ],
+    description: 'Washington DC',
+  },
+  {
+    name: 'Niagara Falls',
+    images: [
+      'https://imgur.com/ZcVIgZr.jpg',
+      'https://imgur.com/CMMxzFw.jpg',
+      'https://imgur.com/C5flBdd.jpg',
+    ],
+    description: 'Niagara Falls',
   },
 ];
 
