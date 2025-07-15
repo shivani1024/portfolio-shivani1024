@@ -5,6 +5,7 @@ import './App.css';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import InterestsSection from './components/InterestsSection';
+import Education from './components/Education';
 
 function App() {
   const particlesInit = async (main) => {
@@ -19,6 +20,56 @@ function App() {
       position: 'relative',
       overflow: 'hidden'
     }}>
+      {/* Navigation Bar */}
+      <nav style={{
+        width: '100%',
+        background: '#23232e',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '0.5rem 0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        boxShadow: '0 2px 12px rgba(36,18,60,0.08)'
+      }}>
+        {[
+          { id: 'hero', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'education', label: 'Education' },
+          { id: 'experience', label: 'Experience' },
+          { id: 'skills', label: 'Technical Skills' },
+          { id: 'projects', label: 'Projects' },
+          { id: 'interests-blog', label: 'Interests' },
+          { id: 'contact', label: 'Contact' },
+        ].map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => {
+              const el = document.getElementById(id);
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            style={{
+              background: window.location.hash === `#${id}` ? '#a855f7' : 'transparent',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 16,
+              padding: '0.7rem 2.5rem',
+              fontWeight: 700,
+              fontSize: '1.25rem',
+              margin: '0 0.5rem',
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+              outline: 'none',
+              boxShadow: window.location.hash === `#${id}` ? '0 2px 12px #a855f7aa' : 'none',
+            }}
+            onMouseOver={e => e.currentTarget.style.background = '#a855f7'}
+            onMouseOut={e => e.currentTarget.style.background = window.location.hash === `#${id}` ? '#a855f7' : 'transparent'}
+          >
+            {label}
+          </button>
+        ))}
+      </nav>
       <Particles
         id="tsparticles"
         init={particlesInit}
@@ -46,8 +97,56 @@ function App() {
         <Hero />
         {/* About Section - moved above Experience */}
         <About />
-        {/* Skills Section */}
-        <section style={{
+        {/* Education Section - new, above Experience */}
+        <Education />
+        {/* Experience Section - moved above Technical Skills */}
+        <section id="experience" style={{
+          padding: '4rem 2rem',
+          background: 'rgba(36, 18, 60, 0.35)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
+        }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: 700,
+              textAlign: 'center',
+              marginBottom: '3rem',
+              color: '#a855f7'
+            }}>
+              Experience
+            </h2>
+            <div style={{
+              background: 'rgba(168, 85, 247, 0.1)',
+              padding: '2rem',
+              borderRadius: '16px',
+              border: '1px solid rgba(168, 85, 247, 0.2)',
+              marginBottom: '2rem'
+            }}>
+              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
+                Oracle Technical Associate - PwC
+              </h3>
+              <p style={{ color: '#e0e0e0', marginBottom: '1rem' }}>
+                Led technical implementations and provided consulting services for enterprise clients.
+              </p>
+            </div>
+            <div style={{
+              background: 'rgba(168, 85, 247, 0.1)',
+              padding: '2rem',
+              borderRadius: '16px',
+              border: '1px solid rgba(168, 85, 247, 0.2)'
+            }}>
+              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
+                Engineering Management Master's Student - UMass
+              </h3>
+              <p style={{ color: '#e0e0e0' }}>
+                Currently pursuing advanced studies in engineering management and leadership.
+              </p>
+            </div>
+          </div>
+        </section>
+        {/* Skills Section - moved below Experience */}
+        <section id="skills" style={{
           padding: '4rem 2rem',
           background: 'rgba(30, 27, 75, 0.35)',
           backdropFilter: 'blur(12px)',
@@ -95,52 +194,6 @@ function App() {
                 <h3 style={{ color: '#c084fc', marginBottom: '1rem' }}>Leadership</h3>
                 <p>Project Management, Team Leadership, Strategic Planning</p>
               </div>
-            </div>
-          </div>
-        </section>
-        {/* Experience Section */}
-        <section style={{
-          padding: '4rem 2rem',
-          background: 'rgba(36, 18, 60, 0.35)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2 style={{
-              fontSize: '2.5rem',
-              fontWeight: 700,
-              textAlign: 'center',
-              marginBottom: '3rem',
-              color: '#a855f7'
-            }}>
-              Experience
-            </h2>
-            <div style={{
-              background: 'rgba(168, 85, 247, 0.1)',
-              padding: '2rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(168, 85, 247, 0.2)',
-              marginBottom: '2rem'
-            }}>
-              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
-                Oracle Technical Associate - PwC
-              </h3>
-              <p style={{ color: '#e0e0e0', marginBottom: '1rem' }}>
-                Led technical implementations and provided consulting services for enterprise clients.
-              </p>
-            </div>
-            <div style={{
-              background: 'rgba(168, 85, 247, 0.1)',
-              padding: '2rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(168, 85, 247, 0.2)'
-            }}>
-              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
-                Engineering Management Master's Student - UMass
-              </h3>
-              <p style={{ color: '#e0e0e0' }}>
-                Currently pursuing advanced studies in engineering management and leadership.
-              </p>
             </div>
           </div>
         </section>
