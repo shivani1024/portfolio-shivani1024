@@ -9,14 +9,20 @@ function DotMatrixBackground() {
   const animationRef = useRef();
   const observerRef = useRef();
   const isPaused = useRef(false);
+  const [canvasReady, setCanvasReady] = React.useState(false);
 
   useEffect(() => {
+    // Only run on client
+    if (typeof window === 'undefined') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    setCanvasReady(true);
     let dpr = window.devicePixelRatio || 1;
     let width = canvas.offsetWidth;
     let height = canvas.offsetHeight;
+    if (!width || !height) return;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -44,7 +50,6 @@ function DotMatrixBackground() {
       }
     }
     // Animation
-    let lastTime = performance.now();
     function animate(now) {
       if (isPaused.current) return;
       ctx.clearRect(0, 0, width, height);
@@ -83,7 +88,7 @@ function DotMatrixBackground() {
       animationRef.current = requestAnimationFrame(animate);
     }
     // Accessibility: pause if prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReducedMotion) {
       animationRef.current = requestAnimationFrame(animate);
     }
@@ -112,21 +117,35 @@ function DotMatrixBackground() {
       observerRef.current.disconnect();
     };
   }, []);
+  // Fallback: if canvas fails, show a static background
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-        pointerEvents: 'none',
-        background: '#1a1a2e',
-      }}
-      aria-hidden="true"
-      tabIndex={-1}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          pointerEvents: 'none',
+          background: '#1a1a2e',
+          display: canvasReady ? 'block' : 'none',
+        }}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      {!canvasReady && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          background: '#1a1a2e',
+          zIndex: 0,
+        }} />
+      )}
+    </>
   );
 }
 
