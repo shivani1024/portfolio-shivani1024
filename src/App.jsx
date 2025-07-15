@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import './App.css';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
+import InterestsSection from './components/InterestsSection';
 
 function App() {
   const particlesInit = async (main) => {
@@ -142,48 +143,8 @@ function App() {
             </div>
           </div>
         </section>
-
-        {/* Interests Section - NEW, below Experience, above Projects/Contact */}
-        <section style={{
-          padding: '4rem 2rem',
-          background: 'rgba(30, 27, 75, 0.35)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2 style={{
-              fontSize: '2.5rem',
-              fontWeight: 700,
-              textAlign: 'center',
-              marginBottom: '2rem',
-              color: '#a855f7'
-            }}>
-              Interests
-            </h2>
-            <blockquote style={{ fontStyle: 'italic', color: '#c084fc', marginBottom: 24, textAlign: 'center' }}>
-              "Come let's travel the world together. Leave the worries behind, just get your bagpacks."
-              <br />
-              <span style={{ fontWeight: 600 }}>— Shivani Sawant, A Traveling Epicure</span>
-            </blockquote>
-            <div style={{ fontSize: 18, marginBottom: 24, textAlign: 'center' }}>
-              <b>Travel & Food:</b> I'm passionate about exploring new places, cultures, and cuisines. My journeys have taken me from the serene Lidder River in Kashmir to the vibrant streets of New York City.<br /><br />
-              <b>Recent U.S. Adventures:</b> While pursuing my Master's at UMass, I've traveled to:
-              <span style={{ color: '#a855f7', fontWeight: 600 }}> Washington DC, Miami, Niagara Falls, New York City, Boston</span>.<br />
-              Each destination has given me new perspectives, unforgettable memories, and a deeper appreciation for diversity and adventure.
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', marginBottom: '2rem' }}>
-              {/* Example images from blog (replace with your own or fetch dynamically) */}
-              <img src="/1.jpeg" alt="Lidder River, Pahalgam" style={{ width: 220, height: 150, objectFit: 'cover', borderRadius: 12, border: '2px solid #a855f7', boxShadow: '0 2px 12px #a855f755', background: '#1e1b4b' }} />
-              <img src="/portfolio.jpg" alt="Travel Blog" style={{ width: 220, height: 150, objectFit: 'cover', borderRadius: 12, border: '2px solid #a855f7', boxShadow: '0 2px 12px #a855f755', background: '#1e1b4b' }} />
-            </div>
-            <div style={{ fontSize: 17, marginBottom: 16, textAlign: 'center' }}>
-              Want to read more? Check out my travel & food blog:<br />
-              <a href="https://travelingepicure.wordpress.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#a855f7', fontWeight: 700, textDecoration: 'underline' }}>
-                travelingepicure.wordpress.com
-              </a>
-            </div>
-          </div>
-        </section>
+        {/* Interests Section - Blog posts from WordPress */}
+        <InterestsSection />
 
         {/* Projects Section */}
         <section style={{
