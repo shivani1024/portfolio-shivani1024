@@ -1,5 +1,6 @@
 import React from 'react';
 import About from './components/About';
+import Hero from './components/Hero';
 import './App.css';
 
 function App() {
@@ -10,50 +11,7 @@ function App() {
       color: '#e0e0e0',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* Hero Section */}
-      <section style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        padding: '2rem',
-        background: 'rgba(36, 18, 60, 0.35)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
-      }}>
-        <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: 800,
-          marginBottom: '1rem',
-          background: 'linear-gradient(135deg, #a855f7, #c084fc)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text'
-        }}>
-          Shivani Sawant
-        </h1>
-        <p style={{
-          fontSize: '1.5rem',
-          marginBottom: '2rem',
-          color: '#c084fc',
-          fontWeight: 500
-        }}>
-          Engineering Management Master's Student | Former Oracle Technical Associate at PwC
-        </p>
-        <p style={{
-          fontSize: '1.2rem',
-          maxWidth: '600px',
-          lineHeight: '1.6',
-          color: '#e0e0e0'
-        }}>
-          Passionate about technology consulting and data engineering. 
-          Seeking opportunities to leverage technical expertise and leadership skills 
-          in dynamic consulting environments.
-        </p>
-      </section>
-
+      <Hero />
       {/* Skills Section */}
       <section style={{
         padding: '4rem 2rem',
