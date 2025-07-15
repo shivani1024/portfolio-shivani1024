@@ -6,6 +6,7 @@ import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import InterestsSection from './components/InterestsSection';
 import Education from './components/Education';
+import Experience from './components/Experience';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 function App() {
@@ -122,52 +123,8 @@ function App() {
         <About />
         {/* Education Section - new, above Experience */}
         <Education />
-        {/* Experience Section - moved above Technical Skills */}
-        <section id="experience" style={{
-          padding: '4rem 2rem',
-          background: 'rgba(36, 18, 60, 0.35)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2 style={{
-              fontSize: '2.5rem',
-              fontWeight: 700,
-              textAlign: 'center',
-              marginBottom: '3rem',
-              color: '#a855f7'
-            }}>
-              Experience
-            </h2>
-            <div style={{
-              background: 'rgba(168, 85, 247, 0.1)',
-              padding: '2rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(168, 85, 247, 0.2)',
-              marginBottom: '2rem'
-            }}>
-              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
-                Oracle Technical Associate - PwC
-              </h3>
-              <p style={{ color: '#e0e0e0', marginBottom: '1rem' }}>
-                Led technical implementations and provided consulting services for enterprise clients.
-              </p>
-            </div>
-            <div style={{
-              background: 'rgba(168, 85, 247, 0.1)',
-              padding: '2rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(168, 85, 247, 0.2)'
-            }}>
-              <h3 style={{ color: '#c084fc', marginBottom: '0.5rem' }}>
-                Intern - PwC
-              </h3>
-              <p style={{ color: '#e0e0e0' }}>
-                Supported consulting teams with research, data analysis, and project coordination during internship at PwC.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Experience Section - use the interactive component */}
+        <Experience />
         {/* Skills Section - moved below Experience */}
         <section id="skills" style={{
           padding: '4rem 2rem',
