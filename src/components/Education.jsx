@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaGraduationCap } from 'react-icons/fa';
 
 const educationData = [
   {
@@ -71,18 +72,21 @@ export default function Education() {
               width: '100%',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ fontWeight: 800, fontSize: 22, color: '#c084fc', marginBottom: 2 }}>{item.degree}</div>
-                <div style={{ fontWeight: 600, fontSize: 17, color: '#e0e0e0', marginBottom: 4 }}>{item.school}</div>
-                <div style={{ color: '#a855f7', fontWeight: 600, fontSize: 15 }}>{item.grad} | GPA: {item.gpa}</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ fontSize: 32, color: 'var(--accent-dark)', minWidth: 40 }}><FaGraduationCap /></div>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: 20, color: '#c084fc' }}>{item.degree}</div>
+                  <div style={{ fontWeight: 600, fontSize: 17, color: '#e0e0e0', marginBottom: 4 }}>{item.school}</div>
+                  <div style={{ color: '#a855f7', fontWeight: 600, fontSize: 15 }}>{item.grad} | GPA: {item.gpa}</div>
+                </div>
               </div>
               <div style={{ fontSize: 28, color: '#a855f7', marginLeft: 18, userSelect: 'none', transition: 'transform 0.2s', transform: openIdx === i ? 'rotate(90deg)' : 'rotate(0deg)' }}>
                 ▶
               </div>
             </div>
             {openIdx === i && (
-              <div style={{ marginTop: 18, borderTop: '1px solid #a855f733', paddingTop: 12 }}>
+              <div style={{ marginTop: 18, borderTop: '1px solid #a855f733', paddingTop: 12, marginLeft: 56 }}>
                 <div style={{ color: '#c084fc', fontWeight: 600, marginBottom: 6 }}>Relevant Coursework:</div>
                 <ul style={{ margin: 0, paddingLeft: 18, color: '#e0e0e0', fontSize: 15 }}>
                   {item.coursework.map((c, j) => <li key={j}>{c}</li>)}
