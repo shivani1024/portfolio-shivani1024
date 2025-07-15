@@ -1,49 +1,89 @@
 import React, { useState, useEffect } from 'react';
 
 const cityData = [
+  // Replace the URLs below with your own hosted images (e.g., /images/washington1.jpg if using GitHub/public)
   {
     name: 'Washington DC',
     images: [
-      'https://i.imgur.com/826EB44.jpg',
-      'https://i.imgur.com/41D31EF.jpg',
+      '/images/washington1.jpg',
+      '/images/washington2.jpg',
     ],
     description: `Exploring the capital was a blend of history and modern vibrance. The National Mall, monuments, and cherry blossoms made for unforgettable walks. I loved the museums and the sense of significance everywhere.`
   },
   {
     name: 'Miami',
     images: [
-      'https://i.imgur.com/7716647.jpg',
-      'https://i.imgur.com/898F902.jpg',
+      '/images/miami1.jpg',
+      '/images/miami2.jpg',
     ],
     description: `Miami was all about sun, sand, and vibrant culture. The beaches were stunning, and the food scene was a delicious adventure. I enjoyed the art deco architecture and the lively nightlife.`
   },
   {
     name: 'Niagara Falls',
     images: [
-      'https://i.imgur.com/E377696.jpg',
-      'https://i.imgur.com/C5E968B.jpg',
+      '/images/niagara1.jpg',
+      '/images/niagara2.jpg',
     ],
     description: `Witnessing the power of Niagara Falls was awe-inspiring. The mist, the roar, and the rainbows made it magical. The boat ride close to the falls was a thrilling highlight of my travels.`
   },
   {
     name: 'New York City',
     images: [
-      'https://i.imgur.com/551F91B.jpg',
-      'https://i.imgur.com/826EB44.jpg',
+      '/images/nyc1.jpg',
+      '/images/nyc2.jpg',
     ],
     description: `NYC is a city that never sleeps! From Times Square to Central Park, every corner buzzed with energy. I loved the diversity, the food, and the endless things to see and do.`
   },
   {
     name: 'Boston',
     images: [
-      'https://i.imgur.com/826EB44.jpg',
-      'https://i.imgur.com/41D31EF.jpg',
+      '/images/boston1.jpg',
+      '/images/boston2.jpg',
     ],
     description: `Boston felt like a perfect blend of history and academia. Walking the Freedom Trail and visiting Harvard were highlights. The city’s charm and intellectual vibe made it special.`
   },
 ];
 
 const BLOG_API = 'https://public-api.wordpress.com/rest/v1.1/sites/travelingepicure.wordpress.com/posts/?number=2';
+
+function ImageWithFallback({ src, alt, ...props }) {
+  const [error, setError] = useState(false);
+  return error ? (
+    <div style={{
+      width: 180,
+      height: 120,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: '#1e1b4b',
+      color: '#a855f7',
+      borderRadius: 12,
+      border: '1.5px solid #a855f7',
+      fontSize: 14,
+      boxShadow: '0 2px 12px #a855f755',
+    }}>
+      Image unavailable
+    </div>
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setError(true)}
+      style={{
+        width: 180,
+        height: 120,
+        objectFit: 'cover',
+        borderRadius: 12,
+        border: '1.5px solid #a855f7',
+        background: '#1e1b4b',
+        boxShadow: '0 2px 12px #a855f755',
+        transition: 'opacity 0.8s',
+        opacity: 1,
+      }}
+      {...props}
+    />
+  );
+}
 
 export default function InterestsSection() {
   const [current, setCurrent] = useState(0);
@@ -64,10 +104,10 @@ export default function InterestsSection() {
       });
   }, []);
 
-  // Combine city slides and blog post slides
+  // Blog posts first, then city slides
   const slides = [
-    ...cityData.map(city => ({ type: 'city', ...city })),
     ...blogPosts.map(post => ({ type: 'blog', ...post })),
+    ...cityData.map(city => ({ type: 'city', ...city })),
   ];
   const total = slides.length;
 
@@ -117,21 +157,10 @@ export default function InterestsSection() {
               <h3 style={{ color: '#c084fc', fontWeight: 700, fontSize: 28, marginBottom: 18 }}>{slide.name}</h3>
               <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
                 {slide.images.map((img, idx) => (
-                  <img
+                  <ImageWithFallback
                     key={img}
                     src={img}
                     alt={`${slide.name} travel ${idx + 1}`}
-                    style={{
-                      width: 180,
-                      height: 120,
-                      objectFit: 'cover',
-                      borderRadius: 12,
-                      boxShadow: '0 2px 12px #a855f755',
-                      border: '1.5px solid #a855f7',
-                      background: '#1e1b4b',
-                      transition: 'opacity 0.8s',
-                      opacity: 1,
-                    }}
                   />
                 ))}
               </div>
