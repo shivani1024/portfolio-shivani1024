@@ -8,6 +8,86 @@ import InterestsSection from './components/InterestsSection';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { FaJava, FaPython, FaDatabase, FaCloud, FaRobot, FaCode, FaCogs, FaProjectDiagram, FaTools, FaChartBar, FaNetworkWired } from 'react-icons/fa';
+
+const skillGroups = [
+  {
+    label: 'Languages & Development',
+    icon: <FaCode />,
+    skills: ['Java', 'SQL', 'PL/SQL', 'Python', 'R', 'C', 'GitLab'],
+  },
+  {
+    label: 'Oracle Technologies',
+    icon: <FaCloud />,
+    skills: [
+      'Fusion Cloud Applications (ERP/SCM/HCM)',
+      'BI Publisher',
+      'Integration Cloud',
+      'Analytics Cloud',
+      'Business Process Management (BPM)',
+      'Flexfields',
+      'Value Sets',
+      'Oracle Security Framework',
+      'FBDI',
+      'OTBI',
+      'FRS Reports',
+    ],
+  },
+  {
+    label: 'Intelligence & Automation',
+    icon: <FaRobot />,
+    skills: [
+      'Alteryx',
+      'UiPath',
+      'IDR',
+      'PowerBI',
+      'Tableau',
+      'RTF Templates',
+      'BI Cloud Connector',
+      'Process Automation',
+      'Postman',
+    ],
+  },
+  {
+    label: 'Integration & Development',
+    icon: <FaNetworkWired />,
+    skills: [
+      'REST/SOAP Web Services',
+      'XML/WSDL',
+      'API Integration',
+      'Data Mapping',
+      'ETL',
+      'DevOps/CI/CD',
+    ],
+  },
+  {
+    label: 'Data & System Integration',
+    icon: <FaDatabase />,
+    skills: [
+      'Data Migration',
+      'System Integration',
+      'EDI Connections',
+      'Data Conversion',
+      'Chart of Accounts Design',
+      'Financial Systems Implementation',
+      'Application Integration',
+      'Master Data Management',
+    ],
+  },
+  {
+    label: 'Management',
+    icon: <FaProjectDiagram />,
+    skills: [
+      'Agile/Scrum',
+      'Waterfall',
+      'ITIL',
+      'UAT/SIT Testing',
+      'Requirements Analysis',
+      'Technical Documentation',
+      'Team Leadership',
+    ],
+  },
+];
 
 function App() {
   const particlesInit = async (main) => {
@@ -125,12 +205,12 @@ function App() {
         <Education />
         {/* Experience Section - use the interactive component */}
         <Experience />
-        {/* Skills Section - moved below Experience */}
+        {/* Skills Section - now below Experience */}
         <section id="skills" style={{
           padding: '4rem 2rem',
           background: 'rgba(30, 27, 75, 0.35)',
           backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(168, 85, 247, 0.12)'
+          borderBottom: '1px solid rgba(168, 85, 247, 0.12)',
         }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <h2 style={{
@@ -140,40 +220,47 @@ function App() {
               marginBottom: '3rem',
               color: '#a855f7'
             }}>
-              Technical Skills
+              Skills
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem'
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 36,
+              justifyContent: 'space-between',
+              marginTop: 8,
+              width: '100%',
             }}>
-              <div style={{
-                background: 'rgba(168, 85, 247, 0.1)',
-                padding: '2rem',
-                borderRadius: '16px',
-                border: '1px solid rgba(168, 85, 247, 0.2)'
-              }}>
-                <h3 style={{ color: '#c084fc', marginBottom: '1rem' }}>Programming</h3>
-                <p>Java, Python, SQL, JavaScript, React</p>
-              </div>
-              <div style={{
-                background: 'rgba(168, 85, 247, 0.1)',
-                padding: '2rem',
-                borderRadius: '16px',
-                border: '1px solid rgba(168, 85, 247, 0.2)'
-              }}>
-                <h3 style={{ color: '#c084fc', marginBottom: '1rem' }}>Tools & Platforms</h3>
-                <p>Oracle, AWS, Git, Docker, Kubernetes</p>
-              </div>
-              <div style={{
-                background: 'rgba(168, 85, 247, 0.1)',
-                padding: '2rem',
-                borderRadius: '16px',
-                border: '1px solid rgba(168, 85, 247, 0.2)'
-              }}>
-                <h3 style={{ color: '#c084fc', marginBottom: '1rem' }}>Leadership</h3>
-                <p>Project Management, Team Leadership, Strategic Planning</p>
-              </div>
+              {skillGroups.map(group => (
+                <div key={group.label} style={{
+                  background: 'rgba(168,85,247,0.08)',
+                  borderRadius: 12,
+                  padding: '1.2rem 1.3rem',
+                  marginBottom: 6,
+                  boxShadow: '0 1px 6px #a855f722',
+                  border: '1px solid #a855f722',
+                  minHeight: 120,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  width: '100%',
+                  maxWidth: 370,
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <span style={{ fontSize: 20, color: '#a855f7' }}>{group.icon}</span>
+                    <span style={{ fontWeight: 700, color: '#c084fc', fontSize: 16 }}>{group.label}</span>
+                  </div>
+                  <ul style={{
+                    margin: 0,
+                    paddingLeft: 18,
+                    color: '#e0e0e0',
+                    fontSize: 14,
+                    lineHeight: 1.7,
+                    listStyle: 'disc',
+                  }}>
+                    {group.skills.map(skill => <li key={skill}>{skill}</li>)}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </section>
