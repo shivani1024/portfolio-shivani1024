@@ -116,14 +116,37 @@ export default function About() {
           </div>
         </div>
         <h3 style={{ color: '#a855f7', fontWeight: 700, fontSize: 26, marginTop: 36, marginBottom: 18 }}>Skills</h3>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, marginTop: 8 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 20,
+          marginTop: 8,
+        }}>
           {skillGroups.map(group => (
-            <div key={group.label} style={{ minWidth: 220, background: 'rgba(168,85,247,0.10)', borderRadius: 14, padding: '1.2rem 1.3rem', marginBottom: 12, boxShadow: '0 2px 12px #a855f733' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 22, color: '#a855f7' }}>{group.icon}</span>
-                <span style={{ fontWeight: 700, color: '#c084fc', fontSize: 18 }}>{group.label}</span>
+            <div key={group.label} style={{
+              background: 'rgba(168,85,247,0.08)',
+              borderRadius: 12,
+              padding: '1rem 1.1rem',
+              marginBottom: 6,
+              boxShadow: '0 1px 6px #a855f722',
+              border: '1px solid #a855f722',
+              minHeight: 120,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 20, color: '#a855f7' }}>{group.icon}</span>
+                <span style={{ fontWeight: 700, color: '#c084fc', fontSize: 16 }}>{group.label}</span>
               </div>
-              <ul style={{ margin: 0, paddingLeft: 18, color: '#e0e0e0', fontSize: 15 }}>
+              <ul style={{
+                margin: 0,
+                paddingLeft: 18,
+                color: '#e0e0e0',
+                fontSize: 14,
+                lineHeight: 1.7,
+                listStyle: 'disc',
+              }}>
                 {group.skills.map(skill => <li key={skill}>{skill}</li>)}
               </ul>
             </div>
