@@ -192,6 +192,13 @@ export default function Hero() {
     loop: true,
     delaySpeed: 700,
   });
+  // Scroll handler
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section
       className="hero-bg section glass"
@@ -208,15 +215,6 @@ export default function Hero() {
         background: '#1a1a2e',
       }}
     >
-      {/* Animated Background */}
-      <DotMatrixBackground />
-      
-      {/* Floating Elements */}
-      <FloatingText text="Oracle" delay={0} style={{ top: '20%', left: '10%' }}/>
-      <FloatingText text="Cloud" delay={2} style={{ top: '30%', right: '15%' }}/>
-      <FloatingText text="Data" delay={4} style={{ bottom: '25%', left: '8%' }}/>
-      <FloatingText text="Automation" delay={6} style={{ bottom: '35%', right: '12%' }} />
-
       <div
         className="hero-content"
         style={{ 
@@ -226,84 +224,40 @@ export default function Hero() {
           textAlign: 'left',
         }}
       >
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{
-            fontSize: '3rem',
-            fontWeight: 800,
-            color: '#fff',
-            fontFamily: 'Inter, Segoe UI, sans-serif',
-            letterSpacing: '-0.02em',
-            marginBottom: 12,
-            marginTop: 0,
-            lineHeight: 1.1,
-          }}
-        >
+        <h1 style={{
+          fontSize: '3rem',
+          fontWeight: 800,
+          color: '#fff',
+          fontFamily: 'Inter, Segoe UI, sans-serif',
+          letterSpacing: '-0.02em',
+          marginBottom: 12,
+          marginTop: 0,
+          lineHeight: 1.1,
+        }}>
           Oracle Solutions Architect & Automation Expert
-        </motion.h1>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          style={{
-            color: '#a0a0a0',
-            fontSize: 22,
-            fontWeight: 400,
-            lineHeight: 1.6,
-            marginBottom: 18,
-            fontFamily: 'Inter, Segoe UI, sans-serif',
-          }}
-        >
+        </h1>
+        <div style={{
+          color: '#a0a0a0',
+          fontSize: 22,
+          fontWeight: 400,
+          lineHeight: 1.6,
+          marginBottom: 18,
+          fontFamily: 'Inter, Segoe UI, sans-serif',
+        }}>
           Specialized in Oracle Cloud applications, business intelligence, and automated workflows. Proven track record of delivering enterprise solutions that drive operational efficiency.
-        </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          style={{ 
-            fontSize: 26, 
-            fontWeight: 600,
-            color: '#fff', 
-            minHeight: 40, 
-            marginBottom: 32,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          {mounted ? (
-            <>
-              <span>{text}</span>
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                style={{ color: '#6366f1', fontSize: '24px' }}
-              >
-                |
-              </motion.span>
-            </>
-          ) : (
-            <span>&nbsp;</span>
-          )}
-        </motion.div>
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: '0 8px 25px rgba(99, 102, 241, 0.4)',
-          }}
-          whileTap={{ scale: 0.95 }}
+        </div>
+        <div style={{ fontSize: 26, fontWeight: 600, color: '#fff', minHeight: 40, marginBottom: 32 }}>
+          {mounted ? <span>{text}</span> : <span>&nbsp;</span>}
+        </div>
+        <button
           className="cta-button"
+          onClick={() => scrollToSection('get-in-touch')}
           style={{
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            background: '#6366f1',
             border: 'none',
-            padding: '16px 32px',
-            borderRadius: 12,
-            fontWeight: 600,
+            padding: '12px 24px',
+            borderRadius: 8,
+            fontWeight: 500,
             color: '#fff',
             fontSize: 18,
             transition: 'all 0.3s ease',
@@ -311,17 +265,12 @@ export default function Hero() {
             marginTop: 8,
             marginBottom: 8,
             cursor: 'pointer',
-            position: 'relative',
-            overflow: 'hidden',
           }}
         >
-          <span style={{ position: 'relative', zIndex: 1}}>Lets Connect</span>
-        </motion.button>
+          Let's Connect
+        </button>
       </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+      <div
         className="hero-photo"
         style={{ 
           flex: 1, 
@@ -333,9 +282,7 @@ export default function Hero() {
           marginTop: 0
         }}
       >
-        <motion.img
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
+        <img
           src={profileImg}
           alt="Shivani Sawant"
           style={{
@@ -350,7 +297,7 @@ export default function Hero() {
             filter: 'drop-shadow(0 0 8px #6366f1)',
           }}
         />
-      </motion.div>
+      </div>
     </section>
   );
 } 
